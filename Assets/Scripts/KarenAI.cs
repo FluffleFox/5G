@@ -29,7 +29,9 @@ public class KarenAI : MonoBehaviour
         { 
             Target = new Vector3(4.5f * (-dir), 0.5f, Targetz); weapon.SetActive(false);
             speed = Random.Range(0.8f, 2.0f);
-            detonate = Random.Range(1.0f, 8.0f / speed - 1.0f);
+            if (Random.Range(0.0f, 100.0f) > 50.0f)
+            { detonate = Random.Range(0.0f, Mathf.Abs(8.0f / speed - 3.0f)); }
+            else { detonate = 999.99f; }
         }
         else
         {
@@ -108,10 +110,12 @@ public class KarenAI : MonoBehaviour
     IEnumerator DIE()
     {
         GetComponent<Collider>().enabled = false;
+        float step = speed / explosionTime;
         for(int i=0; i<explosionTime; i++)
         {
             yield return new WaitForSecondsRealtime(0.005f);
             transform.GetChild(0).GetChild(1).localScale *= growSpeed;
+            speed -= step;
         }
 
         if (detonate > 1000)
@@ -127,6 +131,7 @@ public class KarenAI : MonoBehaviour
         GetComponent<Collider>().enabled = true;
         GameObject GO = (GameObject)Instantiate(particle, transform.position, Quaternion.Euler(-90, 0, 0));
         Destroy(GO, 1.0f);
+        speed = step * explosionTime;
         Start();
     }
 

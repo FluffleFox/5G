@@ -20,6 +20,11 @@ public class TowerAnimation : MonoBehaviour
    Vector3 midDestiny;
    Vector3 topDestiny;
 
+    [HideInInspector]
+    public Vector3 topDropAngle;
+    [HideInInspector]
+    public Vector3 midDropAngle;
+
 
     private void Start()
     {
@@ -44,14 +49,21 @@ public class TowerAnimation : MonoBehaviour
         mid.rotation = Quaternion.Slerp(mid.rotation, Quaternion.Euler(midDestiny), 5.0f * Time.deltaTime);
         top.rotation = Quaternion.Slerp(top.rotation, Quaternion.Euler(topDestiny), 5.0f * Time.deltaTime);
 
+        if (DeadRay.tower != null)
+        {
+            midDestiny -= midDestiny * Time.deltaTime * dragForce;
+            topDestiny -= topDestiny * Time.deltaTime * dragForce;
 
-        midDestiny -= midDestiny * Time.deltaTime * dragForce;
-        topDestiny -= topDestiny * Time.deltaTime * dragForce;
+            mid.transform.localPosition = Vector3.up * 0.5f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
+            top.transform.localPosition = Vector3.up * 2.159919f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
 
-        mid.transform.localPosition = Vector3.up*0.5f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup*boincingSpeed) * bouncingScale;
-        top.transform.localPosition = Vector3.up* 2.159919f+ Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
-
-        bot.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Sin(Time.realtimeSinceStartup * dancingSpeed) * dancingScale);
+            bot.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Sin(Time.realtimeSinceStartup * dancingSpeed) * dancingScale);
+        }
+        else
+        {
+            midDestiny = midDropAngle;
+            topDestiny = topDropAngle;
+        }
     }
 
     public void AddShootForce(Vector3 dir)

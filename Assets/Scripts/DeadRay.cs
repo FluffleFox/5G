@@ -14,6 +14,7 @@ public class DeadRay : MonoBehaviour
     float currentSpeed;
     bool ready;
     TowerAnimation towerAnimation;
+
     
 
     private void Start()
@@ -26,6 +27,8 @@ public class DeadRay : MonoBehaviour
         line.SetPosition(0, currentPos);
         line.SetPosition(1, currentPos);
         towerAnimation = GetComponent<TowerAnimation>();
+        towerAnimation.midDropAngle = new Vector3(Random.Range(80.0f, 95.0f), Random.Range(0.0f, 360.0f), 0.0f);
+        towerAnimation.topDropAngle = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-45.0f, 45.0f), 0.0f);
     }
 
     private void Update()
