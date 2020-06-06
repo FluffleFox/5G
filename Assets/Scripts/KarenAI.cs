@@ -15,6 +15,10 @@ public class KarenAI : MonoBehaviour
     bool rage = false;
     public GameObject phone;
     public GameObject weapon;
+
+    public int explosionTime;
+    public float growSpeed;
+
     void Start()
     {
         int dir = Mathf.RoundToInt(Mathf.Sign(Random.Range(-1.0f, 1.0f)));
@@ -96,22 +100,34 @@ public class KarenAI : MonoBehaviour
     {
         if (DeadRay.tower != null)
         {
-
-            if (detonate > 1000)
-            {
-                ScoreCounter.counter.AddScore();
-            }
-            else if (!rage)
-            {
-                ScoreCounter.counter.LostHP();
-            }
-            
-
-            GameObject GO = (GameObject)Instantiate(particle, transform.position, Quaternion.Euler(-90, 0, 0));
-            Destroy(GO, 1.0f);
-            Start();
+            StartCoroutine(DIE());
         }
 
+    }
+
+    IEnumerator DIE()
+    {
+        GetComponent<Collider>().enabled = false;
+        for(int i=0; i<explosionTime; i++)
+        {
+            yield return new WaitForSecondsRealtime(0.005f);
+            transform.GetChild(0).GetChild(1).localScale *= growSpeed;
+        }
+
+        if (detonate > 1000)
+        {
+            ScoreCounter.counter.AddScore();
+        }
+        else if (!rage)
+        {
+            ScoreCounter.counter.LostHP();
+        }
+
+        transform.GetChild(0).GetChild(1).localScale = Vector3.one*0.55f;
+        GetComponent<Collider>().enabled = true;
+        GameObject GO = (GameObject)Instantiate(particle, transform.position, Quaternion.Euler(-90, 0, 0));
+        Destroy(GO, 1.0f);
+        Start();
     }
 
     public void Rage()
