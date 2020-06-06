@@ -6,9 +6,16 @@ public class TowerAnimation : MonoBehaviour
 {
     public Transform mid;
     public Transform top;
+    public Transform bot;
 
     public float dragForce;
     public float shootForce;
+
+    public float bouncingScale;
+    public float boincingSpeed;
+
+    public float dancingScale;
+    public float dancingSpeed;
 
    Vector3 midDestiny;
    Vector3 topDestiny;
@@ -16,7 +23,7 @@ public class TowerAnimation : MonoBehaviour
 
     private void Start()
     {
-        midDestiny = Vector3.zero;
+       midDestiny = Vector3.zero;
        topDestiny = Vector3.zero;
     }
 
@@ -37,9 +44,14 @@ public class TowerAnimation : MonoBehaviour
         mid.rotation = Quaternion.Slerp(mid.rotation, Quaternion.Euler(midDestiny), 5.0f * Time.deltaTime);
         top.rotation = Quaternion.Slerp(top.rotation, Quaternion.Euler(topDestiny), 5.0f * Time.deltaTime);
 
+
         midDestiny -= midDestiny * Time.deltaTime * dragForce;
         topDestiny -= topDestiny * Time.deltaTime * dragForce;
 
+        mid.transform.localPosition = Vector3.up*0.5f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup*boincingSpeed) * bouncingScale;
+        top.transform.localPosition = Vector3.up* 2.159919f+ Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
+
+        bot.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Sin(Time.realtimeSinceStartup * dancingSpeed) * dancingScale);
     }
 
     public void AddShootForce(Vector3 dir)

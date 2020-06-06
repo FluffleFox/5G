@@ -43,7 +43,7 @@ public class KarenAI : MonoBehaviour
         phone.SetActive(false);
 
         //GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
-        transform.GetChild(0).GetComponent<Renderer>().materials[1].color= new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
+        transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color= new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
     }
 
     // Update is called once per frame

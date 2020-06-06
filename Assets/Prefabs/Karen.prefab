@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 5075712643549150066}
   - component: {fileID: 4263654849183973700}
   - component: {fileID: 7500465996154568125}
-  - component: {fileID: 119481889967145460}
+  - component: {fileID: 5469871221117640738}
   m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
@@ -307,7 +307,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &119481889967145460
+--- !u!95 &5469871221117640738
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ Animator:
   m_GameObject: {fileID: 8082787160675207521}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 830f894a45c54e04f8bdb54a39251eba, type: 2}
+  m_Controller: {fileID: 9100000, guid: 339438000eb584f458293bb233e9df76, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
