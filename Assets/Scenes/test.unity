@@ -150,7 +150,7 @@ Transform:
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1562220339}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 13.6, y: 0, z: 0}
 --- !u!212 &35070130
 SpriteRenderer:
@@ -414,7 +414,7 @@ Transform:
   m_LocalScale: {x: 25.356, y: 0.14307718, z: 0.79833597}
   m_Children: []
   m_Father: {fileID: 1562220339}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &632894712
 BoxCollider:
@@ -1075,12 +1075,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895700190}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 5.08, y: 10.04, z: 49.52}
-  m_LocalScale: {x: 5.8205, y: 1, z: 2.1454}
+  m_LocalScale: {x: 5.8205004, y: 1, z: 2.1454}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1562220339}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!1001 &952329426
 PrefabInstance:
@@ -1127,7 +1127,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c9c7c25a27216034391a60a6fa9a34e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c9c7c25a27216034391a60a6fa9a34e5,
         type: 3}
@@ -1348,7 +1348,7 @@ Transform:
   m_LocalScale: {x: 2.5273, y: 1, z: 0.48887}
   m_Children: []
   m_Father: {fileID: 1562220339}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1019136334 stripped
 Transform:
@@ -1752,7 +1752,7 @@ Transform:
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1562220339}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 13.6, y: 0, z: 0}
 --- !u!212 &1294554418
 SpriteRenderer:
@@ -1991,6 +1991,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 895700194}
   - {fileID: 632894711}
   - {fileID: 976892461}
   - {fileID: 1656236187}
@@ -2411,7 +2412,7 @@ Transform:
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 1562220339}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1789707109
 BoxCollider:
