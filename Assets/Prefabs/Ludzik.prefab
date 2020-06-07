@@ -289,8 +289,8 @@ MonoBehaviour:
     type: 3}
   phone: {fileID: 943625680165698336}
   weapon: {fileID: 4932635247429334305}
-  explosionTime: 10
-  growSpeed: 1.07
+  explosionTime: 35
+  growSpeed: 1.01
 --- !u!65 &7951410024291303793
 BoxCollider:
   m_ObjectHideFlags: 0
