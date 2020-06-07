@@ -320,10 +320,10 @@ MonoBehaviour:
   bot: {fileID: 3047733917537187812}
   dragForce: 5
   shootForce: 40
-  bouncingScale: 0.2
-  boincingSpeed: 5
+  bouncingScale: 0.05
+  boincingSpeed: 19
   dancingScale: 5
-  dancingSpeed: 2.5
+  dancingSpeed: 10
   topDropAngle: {x: 0, y: 0, z: 0}
   midDropAngle: {x: 0, y: 0, z: 0}
 --- !u!114 &4664538044962318032
