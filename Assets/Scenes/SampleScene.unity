@@ -454,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 650696579}
   hpText: {fileID: 65424901}
-  tower: {fileID: 0}
+  tower: {fileID: 1414008618}
 --- !u!114 &473418519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,6 +1336,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1414008618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4664538044962317997, guid: 8fb23c80d7cd12640b8bc014d3829a20,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272387193}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1430218705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2335490909167469305, guid: 07b5869524b4ffe4aaffcc347ec646ea,
@@ -1820,7 +1826,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6461642264647215230, guid: b4089cfc1c180a949a7f9f190d087ecf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4089cfc1c180a949a7f9f190d087ecf, type: 3}
 --- !u!4 &7125327932010218664 stripped
 Transform:
