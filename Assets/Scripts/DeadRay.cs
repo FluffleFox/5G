@@ -60,8 +60,9 @@ public class DeadRay : MonoBehaviour
                 line.SetPosition(0, center.position);
                 line.SetPosition(1, currentPos);
             }
-            else { ready = true; }
+            else { ready = true; line.SetPosition(1, center.position); }
         }
+        else { line.SetPosition(1, center.position); }
     }
 
     public void Burn()

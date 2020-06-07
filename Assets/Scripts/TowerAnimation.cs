@@ -42,7 +42,6 @@ public class TowerAnimation : MonoBehaviour
     {
         midDestiny = Vector3.zero; //Quaternion.Euler(Vector3.zero);
         topDestiny = Vector3.zero; //Quaternion.Euler(Vector3.zero);
-        GetComponent<LineRenderer>().enabled = false;
     }
 
     private void Update()
