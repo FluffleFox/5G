@@ -10,7 +10,8 @@ public class KarenAI : MonoBehaviour
     float currentSpeed;
     public LayerMask mask;
     public GameObject particle;
-    float detonate;
+    [HideInInspector]
+    public float detonate;
     float reload;
     bool rage = false;
     public GameObject phone;
@@ -98,13 +99,21 @@ public class KarenAI : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    /*private void OnMouseDown()
     {
         if (DeadRay.tower != null)
         {
             StartCoroutine(DIE());
         }
 
+    }*/
+
+    public void Hit()
+    {
+        if (DeadRay.tower != null)
+        {
+            StartCoroutine(DIE());
+        }
     }
 
     IEnumerator DIE()

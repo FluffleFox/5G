@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\DeadRay.cs" />
     <Compile Include="Assets\Scripts\KarenAI.cs" />
     <Compile Include="Assets\Scripts\ScoreCounter.cs" />
+    <Compile Include="Assets\Scripts\ShootMechanic.cs" />
     <Compile Include="Assets\Scripts\TowerAnimation.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
