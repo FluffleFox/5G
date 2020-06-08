@@ -14,6 +14,7 @@ public class ScoreCounter : MonoBehaviour
     public GameObject tower;
 
     float cooldown;
+    int reload = 0;
 
     private void Start()
     {
@@ -24,6 +25,12 @@ public class ScoreCounter : MonoBehaviour
     {
         currentScore++;
         score.text = currentScore.ToString();
+        reload++;
+        if (reload >= 10)
+        {
+            reload = 0;
+            NPCDispository.Dispository.SetAnother();
+        }
     }
 
     public void LostHP()

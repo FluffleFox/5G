@@ -20,37 +20,43 @@ public class KarenAI : MonoBehaviour
     public int explosionTime;
     public float growSpeed;
 
+    int index;
+
     void Start()
     {
-        int dir = Mathf.RoundToInt(Mathf.Sign(Random.Range(-1.0f, 1.0f)));
-        float Targetz = Random.Range(-6.5f, -1.5f);
-        float Startz = Random.Range(-6.5f, -1.5f);
-        transform.position = new Vector3(4*dir, 0.5f, Startz);
-        if (!rage)
-        { 
-            Target = new Vector3(4.5f * (-dir), 0.5f, Targetz); weapon.SetActive(false);
-            speed = Random.Range(0.8f, 2.0f);
-            if (Random.Range(0.0f, 100.0f) > 50.0f)
-            { detonate = Random.Range(0.0f, Mathf.Abs(8.0f / speed - 3.0f)); }
-            else { detonate = 999.99f; }
-        }
-        else
+        if (NPCDispository.Dispository.CanIRespawn(index, transform.parent))
         {
-            if (DeadRay.tower != null)
-            { Target = DeadRay.tower.gameObject.transform.position; }
-            weapon.SetActive(true);
-            speed += Random.Range(0.8f, 2.0f);
-            detonate = float.MaxValue;
+            int dir = Mathf.RoundToInt(Mathf.Sign(Random.Range(-1.0f, 1.0f)));
+            float Targetz = Random.Range(-6.5f, -1.5f);
+            float Startz = Random.Range(-6.5f, -1.5f);
+            transform.position = new Vector3(4 * dir, 0.5f, Startz);
+            if (!rage)
+            {
+                Target = new Vector3(4.5f * (-dir), 0.5f, Targetz); weapon.SetActive(false);
+                speed = Random.Range(0.8f, 2.0f);
+                if (Random.Range(0.0f, 100.0f) > 50.0f)
+                { detonate = Random.Range(0.0f, Mathf.Abs(8.0f / speed - 3.0f)); }
+                else { detonate = 999.99f; }
+            }
+            else
+            {
+                if (DeadRay.tower != null)
+                { Target = DeadRay.tower.gameObject.transform.position; }
+                weapon.SetActive(true);
+                speed += Random.Range(0.8f, 2.0f);
+                detonate = float.MaxValue;
+            }
+            transform.rotation = Quaternion.LookRotation(transform.position - Target);
+            currentSpeed = speed;
+
+            //phone.transform.localPosition = new Vector3(dir * 0.09f, 0.38f, 0.0f);
+            transform.GetChild(0).GetComponent<Animator>().SetFloat("Direction", dir);
+            phone.SetActive(false);
+
+            //GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
+            transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
         }
-        transform.rotation = Quaternion.LookRotation(transform.position-Target);
-        currentSpeed = speed;
-
-        //phone.transform.localPosition = new Vector3(dir * 0.09f, 0.38f, 0.0f);
-        transform.GetChild(0).GetComponent<Animator>().SetFloat("Direction", dir);
-        phone.SetActive(false);
-
-        //GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
-        transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color= new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
+        else { gameObject.SetActive(false); }
     }
 
     // Update is called once per frame
@@ -84,7 +90,7 @@ public class KarenAI : MonoBehaviour
         if(rage&& Vector3.Distance(transform.position, Target) < 0.4f)
         {
             if (DeadRay.tower != null)
-            { DeadRay.tower.Burn(); }
+            { DeadRay.tower.Burn(); NPCDispository.Dispository.ResetAll(); }
         }
         if(rage&& DeadRay.tower == null)
         {
@@ -98,15 +104,6 @@ public class KarenAI : MonoBehaviour
             speed = Random.Range(0.8f, 2.0f);
         }
     }
-
-    /*private void OnMouseDown()
-    {
-        if (DeadRay.tower != null)
-        {
-            StartCoroutine(DIE());
-        }
-
-    }*/
 
     public void Hit()
     {
@@ -153,5 +150,10 @@ public class KarenAI : MonoBehaviour
         if (DeadRay.tower != null)
         { Target = DeadRay.tower.gameObject.transform.position; }
         transform.rotation = Quaternion.LookRotation(transform.position - Target);
+    }
+
+    public void SetIndex(int value)
+    {
+        index = value;
     }
 }
