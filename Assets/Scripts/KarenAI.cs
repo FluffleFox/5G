@@ -27,15 +27,15 @@ public class KarenAI : MonoBehaviour
         if (NPCDispository.Dispository.CanIRespawn(index, transform.parent))
         {
             int dir = Mathf.RoundToInt(Mathf.Sign(Random.Range(-1.0f, 1.0f)));
-            float Targetz = Random.Range(-6.5f, -1.5f);
-            float Startz = Random.Range(-6.5f, -1.5f);
+            float Targetz = Random.Range(-5.5f, 0.5f);
+            float Startz = Random.Range(-5.5f, 0.5f);
             transform.position = new Vector3(4 * dir, 0.5f, Startz);
             if (!rage)
             {
                 Target = new Vector3(4.5f * (-dir), 0.5f, Targetz); weapon.SetActive(false);
                 speed = Random.Range(0.8f, 2.0f);
                 if (Random.Range(0.0f, 100.0f) > 50.0f)
-                { detonate = Random.Range(0.0f, Mathf.Abs(8.0f / speed - 3.0f)); }
+                { detonate = Random.Range(0.0f, Mathf.Abs(5.0f / speed)); }
                 else { detonate = 999.99f; }
             }
             else
@@ -63,7 +63,11 @@ public class KarenAI : MonoBehaviour
     void Update()
     {
         transform.Translate((Target - transform.position).normalized*currentSpeed * Time.deltaTime, Space.World);
-        if (Mathf.Abs(transform.position.x) >= 4.1f) { Start(); }
+        if (Mathf.Abs(transform.position.x) >= 4.1f)
+        { 
+            if(detonate > 1000) { ScoreCounter.counter.LostHP(); }
+            Start();
+        }
 
         foreach(Collider k in Physics.OverlapSphere(transform.position, 0.3f, mask))
         {
