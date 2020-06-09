@@ -338,9 +338,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e68f7925c9a87e45ade752f029fcbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tolerance: 0.45
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 9ae107d4168e04c45a57c7588bc195e5, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &5671685658058760561
 GameObject:
   m_ObjectHideFlags: 0

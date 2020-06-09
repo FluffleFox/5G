@@ -31,11 +31,19 @@ public class NPCDispository : MonoBehaviour
         if (widly == pochodnie && widly<widlyContainer.childCount)
         {
             widlyContainer.GetChild(widly).gameObject.SetActive(true);
+            if (ScoreCounter.counter.Rage())
+            {
+                widlyContainer.GetChild(widly).gameObject.GetComponent<KarenAI>().Rage();
+            }
             widly++;
         }
         else if(pochodnie<pochodnieContainer.childCount)
         {
             pochodnieContainer.GetChild(pochodnie).gameObject.SetActive(true);
+            if (ScoreCounter.counter.Rage())
+            {
+                pochodnieContainer.GetChild(pochodnie).gameObject.GetComponent<KarenAI>().Rage();
+            }
             pochodnie++;
         }
     }

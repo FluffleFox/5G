@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class ShootMechanic : MonoBehaviour
 {
-    public float tolerance = 0.1f;
     public AudioSource source;
     public AudioClip clip;
+    public LayerMask mask;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            if (!ScoreCounter.counter.Rage()) Shoot();
+            else DesperateShoot();
         }
     }
+
 
     void Shoot()
     {
@@ -43,6 +45,32 @@ public class ShootMechanic : MonoBehaviour
         if (first != null)
         {
             first.GetComponent<KarenAI>().Hit();
+        }
+    }
+
+    void DesperateShoot()
+    {
+        if (DeadRay.tower != null)
+        { source.PlayOneShot(clip); }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit info;
+        if (Physics.Raycast(ray, out info))
+        {
+            Collider[] inRange = Physics.OverlapSphere(info.point, 5.0f,mask);
+            if (inRange.Length == 0) { return; }
+            if (inRange.Length == 1) { inRange[0].gameObject.GetComponent<KarenAI>().Hit(); return; }
+            GameObject toDestroy=inRange[0].gameObject;
+            float distance = float.MaxValue;
+            for(int i=0; i<inRange.Length; i++)
+            {
+                float curr = Vector3.Distance(info.point, inRange[i].transform.position);
+                if (curr < distance)
+                {
+                    distance = curr;
+                    toDestroy = inRange[i].gameObject;
+                }
+            }
+            toDestroy.GetComponent<KarenAI>().Hit();
         }
     }
 }
