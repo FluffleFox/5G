@@ -65,8 +65,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CloundMovment.cs" />
     <Compile Include="Assets\Scripts\DeadRay.cs" />
+    <Compile Include="Assets\Scripts\DontDestroyableObject.cs" />
     <Compile Include="Assets\Scripts\Evacuation.cs" />
     <Compile Include="Assets\Scripts\HeliAnimation.cs" />
+    <Compile Include="Assets\Scripts\HeliSceneMenagment.cs" />
     <Compile Include="Assets\Scripts\KarenAI.cs" />
     <Compile Include="Assets\Scripts\NPCDispository.cs" />
     <Compile Include="Assets\Scripts\ScoreCounter.cs" />
