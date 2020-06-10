@@ -42,8 +42,12 @@ public class ScoreCounter : MonoBehaviour
     public void LostHP()
     {
         hp--;
-        hpText.text = hp.ToString();
-        if (hp <= 0)
+        if (hp >= 0)
+        {
+            hpText.text = hp.ToString();
+        }
+
+        if (hp == 0)
         {
             foreach(KarenAI karen in GameObject.FindObjectsOfType<KarenAI>())
             {
@@ -73,7 +77,11 @@ public class ScoreCounter : MonoBehaviour
         {
             evac -= Time.deltaTime;
             evacBar.fillAmount = evac / evacTime;
-            if (evac <= 0.0f) Debug.Log("Success!");
+            if (evac <= 0.0f) 
+            { 
+                Debug.Log("Success!");
+                Evacuation.instance.Evac();
+            }
         }
     }
 

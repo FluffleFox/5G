@@ -98,14 +98,7 @@ public class KarenAI : MonoBehaviour
         }
         if(rage&& DeadRay.tower == null)
         {
-            rage = false;
-            Vector3 tmp = (transform.position - Target).normalized * 10.0f;
-            if (Mathf.Abs(tmp.x) < 4.5f) { tmp.x = 4.5f*Mathf.Sign(tmp.x); }
-            Target = transform.position+tmp;
-            Target.y = 0.5f;
-            transform.rotation = Quaternion.LookRotation(transform.position - Target);
-            weapon.SetActive(false);
-            speed = Random.Range(0.8f, 2.0f);
+            StopRage();
         }
     }
 
@@ -159,5 +152,17 @@ public class KarenAI : MonoBehaviour
     public void SetIndex(int value)
     {
         index = value;
+    }
+
+    public void StopRage()
+    {
+        rage = false;
+        Vector3 tmp = (transform.position - Target).normalized * 10.0f;
+        if (Mathf.Abs(tmp.x) < 4.5f) { tmp.x = 4.5f * Mathf.Sign(tmp.x); }
+        Target = transform.position + tmp;
+        Target.y = 0.5f;
+        transform.rotation = Quaternion.LookRotation(transform.position - Target);
+        weapon.SetActive(false);
+        speed = Random.Range(0.8f, 2.0f);
     }
 }
