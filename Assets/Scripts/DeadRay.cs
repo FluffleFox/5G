@@ -14,6 +14,7 @@ public class DeadRay : MonoBehaviour
     float currentSpeed;
     bool ready;
     TowerAnimation towerAnimation;
+    public float distanceFromCam = 12.0f;
 
     
 
@@ -23,7 +24,7 @@ public class DeadRay : MonoBehaviour
         tower = this;
         center = transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0);
         line = GetComponent<LineRenderer>();
-        currentPos = center.position;
+        currentPos = center.position;// + (Camera.main.transform.position-center.position).normalized*distance;
         line.SetPosition(0, currentPos);
         line.SetPosition(1, currentPos);
         towerAnimation = GetComponent<TowerAnimation>();
@@ -33,20 +34,33 @@ public class DeadRay : MonoBehaviour
 
     private void Update()
     {
-        line.SetPosition(0, center.position);
+        float distance = Vector3.Distance(center.position, Camera.main.transform.position) - distanceFromCam;
+        Vector3 source = center.position + (Camera.main.transform.position - center.position).normalized * distance;
+        line.SetPosition(0, source);
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit info;
             if (Physics.Raycast(ray, out info))
             {
+                if (info.collider.GetComponent<KarenAI>() != null)
+                {
+                    currentPos = info.collider.transform.position;
+                    Vector3 target = info.collider.transform.position;
+                    target.y = 0;
+                    Vector3 cam = Camera.main.transform.position;
+                    cam.y = 0;
+                    distanceFromCam = Vector3.Distance(target, cam);
+                }
+                else
+                {
+                    distanceFromCam = 5.0f;
+                    currentPos = info.point;
+                }
                 lastHit = info.point;
-                currentPos = info.point+(info.point-center.position).normalized;
                 line.SetPosition(1, currentPos);
                 ready = false;
                 currentSpeed = 1.5f;
-                Debug.DrawLine(center.position, center.position + (center.position - currentPos).normalized, Color.green, 5.0f);
-                Debug.DrawLine(center.position, center.position - (center.position - currentPos).normalized, Color.red, 5.0f);
                 towerAnimation.AddShootForce(center.position - currentPos);
             }
         }
@@ -56,13 +70,19 @@ public class DeadRay : MonoBehaviour
             currentSpeed += currentSpeed * Time.deltaTime;
             if (Vector3.Distance(center.position, currentPos) > Vector3.Distance(center.position, currentPos - (lastHit - center.position).normalized * Time.deltaTime * currentSpeed * raySpeed))
             {
-                currentPos -= (lastHit - center.position).normalized * Time.deltaTime * currentSpeed * raySpeed;
-                line.SetPosition(0, center.position);
+                currentPos -= (lastHit - source).normalized * Time.deltaTime * currentSpeed * raySpeed;
+                line.SetPosition(0, source);
                 line.SetPosition(1, currentPos);
             }
-            else { ready = true; line.SetPosition(1, center.position); }
+            else { ready = true; line.SetPosition(1, source); }
         }
-        else { line.SetPosition(1, center.position); }
+        else { line.SetPosition(1, source); }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Break();
+        }
+    
     }
 
     public void Burn()
