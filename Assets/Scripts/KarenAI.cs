@@ -133,6 +133,7 @@ public class KarenAI : MonoBehaviour
         transform.GetChild(0).GetChild(1).localScale = Vector3.one*0.55f;
         GetComponent<Collider>().enabled = true;
         GameObject GO = (GameObject)Instantiate(particle, transform.position, Quaternion.Euler(-90, 0, 0));
+        GO.GetComponent<Renderer>().material.color= transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color;
         Destroy(GO, 1.0f);
         speed = step * explosionTime;
         Start();
