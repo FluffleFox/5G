@@ -68,7 +68,7 @@ public class DeadRay : MonoBehaviour
         if (!ready)
         {
             currentSpeed += currentSpeed * Time.deltaTime;
-            if (Vector3.Distance(center.position, currentPos) > Vector3.Distance(center.position, currentPos - (lastHit - center.position).normalized * Time.deltaTime * currentSpeed * raySpeed))
+            if (Vector3.Distance(source, currentPos) > Vector3.Distance(source, currentPos - (lastHit - source).normalized * Time.deltaTime * currentSpeed * raySpeed))
             {
                 currentPos -= (lastHit - source).normalized * Time.deltaTime * currentSpeed * raySpeed;
                 line.SetPosition(0, source);
