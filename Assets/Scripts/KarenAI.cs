@@ -24,7 +24,7 @@ public class KarenAI : MonoBehaviour
 
     void Start()
     {
-        if (NPCDispository.Dispository.CanIRespawn(index, transform.parent))
+        if (NPCDispository.Dispository.CanIRespawn(index))
         {
             int dir = Mathf.RoundToInt(Mathf.Sign(Random.Range(-1.0f, 1.0f)));
             float Targetz = Random.Range(-5.5f, 0.5f);

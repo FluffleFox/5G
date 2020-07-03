@@ -28,14 +28,20 @@ public class ShootMechanic : MonoBehaviour
         {
             if (Physics.Raycast(ray, out info))
             {
-                if (info.collider.GetComponent<KarenAI>() != null)
+                if (info.collider.GetComponent<NPC_ControlScript>() != null)
                 {
-                    KarenAI karen = info.collider.GetComponent<KarenAI>();
-                    if (first == null) { first = karen.gameObject; }
-                    if (karen.detonate > 1000.0f) { karen.Hit(); return; }
-                    //else if (Vector3.Distance(info.point, karen.transform.position + Vector3.up * 0.37f-karen.transform.forward*0.03f) < tolerance)
-                    //{ karen.Hit(); break; }
-                    else { ray.origin = info.point + ray.direction.normalized * 0.1f; }
+                    if (first == null)
+                    {
+                        first = info.collider.gameObject;
+                    }
+
+                    if (info.collider.GetComponent<NPC_ControlScript>().priorityToDestroy)
+                    {
+                        info.collider.GetComponent<Hit>().GetHit();
+                        return;
+                    }
+
+                    ray.origin = info.point + ray.direction.normalized * 0.05f;
                 }
                 else { break; }
             }
@@ -44,7 +50,7 @@ public class ShootMechanic : MonoBehaviour
 
         if (first != null)
         {
-            first.GetComponent<KarenAI>().Hit();
+            first.GetComponent<Hit>().GetHit();
         }
     }
 
@@ -58,7 +64,7 @@ public class ShootMechanic : MonoBehaviour
         {
             Collider[] inRange = Physics.OverlapSphere(info.point, 5.0f,mask);
             if (inRange.Length == 0) { return; }
-            if (inRange.Length == 1) { inRange[0].gameObject.GetComponent<KarenAI>().Hit(); return; }
+            if (inRange.Length == 1) { inRange[0].gameObject.GetComponent<Hit>().GetHit(); return; }
             GameObject toDestroy=inRange[0].gameObject;
             float distance = float.MaxValue;
             for(int i=0; i<inRange.Length; i++)
@@ -70,7 +76,7 @@ public class ShootMechanic : MonoBehaviour
                     toDestroy = inRange[i].gameObject;
                 }
             }
-            toDestroy.GetComponent<KarenAI>().Hit();
+            toDestroy.GetComponent<Hit>().GetHit();
         }
     }
 }

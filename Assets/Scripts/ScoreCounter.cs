@@ -49,9 +49,9 @@ public class ScoreCounter : MonoBehaviour
 
         if (hp == 0)
         {
-            foreach(KarenAI karen in GameObject.FindObjectsOfType<KarenAI>())
+            foreach(NPC_ControlScript karen in GameObject.FindObjectsOfType<NPC_ControlScript>())
             {
-                karen.Rage();
+                karen.PrepareRageMode();
             }
             evac = evacTime;
             eta.SetActive(true);

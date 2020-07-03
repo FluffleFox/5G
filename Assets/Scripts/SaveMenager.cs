@@ -9,7 +9,8 @@ public static class SaveMenager
         Debug.Log("Save");
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "Data.fun";
-        FileStream file = File.Create(path);
+        FileStream file;
+        file = File.Open(path, FileMode.OpenOrCreate);
         bf.Serialize(file, data);
         file.Close();
     }

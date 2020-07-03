@@ -2,63 +2,40 @@
 
 public class NPCDispository : MonoBehaviour
 {
-    int widly = 4;
-    int pochodnie = 4;
-    Transform widlyContainer;
-    Transform pochodnieContainer;
     public static NPCDispository Dispository;
+    int current = 6;
 
     private void Awake()
     {
         Dispository = this;
-        widlyContainer = transform.GetChild(0);
-        pochodnieContainer=transform.GetChild(1);
-        for (int i = 0; i < widlyContainer.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            widlyContainer.GetChild(i).GetComponent<KarenAI>().SetIndex(i);
-            if (i >= widly) { widlyContainer.GetChild(i).gameObject.SetActive(false); }
-        }
-        for (int i = 0; i < pochodnieContainer.childCount; i++)
-        {
-            pochodnieContainer.GetChild(i).GetComponent<KarenAI>().SetIndex(i);
-            if (i >= pochodnie) { pochodnieContainer.GetChild(i).gameObject.SetActive(false); }
+            transform.GetChild(i).GetComponent<NPC_ControlScript>().SetIndex(i);
+            if (i >= current) { transform.GetChild(i).gameObject.SetActive(false); }
         }
     }
 
 
     public void SetAnother()
     {
-        if (widly == pochodnie && widly<widlyContainer.childCount)
+        if (current < transform.childCount)
         {
-            widlyContainer.GetChild(widly).gameObject.SetActive(true);
-            if (ScoreCounter.counter.Rage())
-            {
-                widlyContainer.GetChild(widly).gameObject.GetComponent<KarenAI>().Rage();
-            }
-            widly++;
-        }
-        else if(pochodnie<pochodnieContainer.childCount)
-        {
-            pochodnieContainer.GetChild(pochodnie).gameObject.SetActive(true);
-            if (ScoreCounter.counter.Rage())
-            {
-                pochodnieContainer.GetChild(pochodnie).gameObject.GetComponent<KarenAI>().Rage();
-            }
-            pochodnie++;
+            current++;
+            transform.GetChild(current-1).gameObject.SetActive(true);
         }
     }
 
-    public bool CanIRespawn(int index, Transform parent)
+    public bool CanIRespawn(int index)
     {
-        if (parent == pochodnieContainer)
-        { if (index < pochodnie) { return true; } else return false; }
-        else if (parent == widlyContainer) { if (index < widly) return true; else return false; }
-        else { Debug.Log("Something went wrong in: " + parent.name); return false; }
+        if (index < current) { return true; } else return false;
     }
 
     public void ResetAll()
     {
-        widly = 3;
-        pochodnie = 3;
+        for(int i=0; i<current; i++)
+        {
+            transform.GetChild(i).GetComponent<NPC_ControlScript>().StopRageMode();
+        }
+        current = 6;
     }
 }

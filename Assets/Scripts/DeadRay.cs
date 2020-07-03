@@ -77,12 +77,6 @@ public class DeadRay : MonoBehaviour
             else { ready = true; line.SetPosition(1, source); }
         }
         else { line.SetPosition(1, source); }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Break();
-        }
-    
     }
 
     public void Burn()

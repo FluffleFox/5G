@@ -9,12 +9,16 @@ public class GeneralGameMenager : MonoBehaviour
     public PlayerData data;
     void Awake()
     {
-        Debug.Log(Application.persistentDataPath);
         if (instance != null) { Destroy(gameObject); }
         else { instance = this; }
         DontDestroyOnLoad(gameObject);
         data = SaveMenager.Load();
         SceneManager.LoadScene(data.currentSceneIndex);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        data = SaveMenager.Load();
     }
 
 }
