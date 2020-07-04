@@ -3,7 +3,7 @@
 public class NPCDispository : MonoBehaviour
 {
     public static NPCDispository Dispository;
-    int current = 6;
+    int current = 40;
 
     private void Awake()
     {
@@ -22,6 +22,7 @@ public class NPCDispository : MonoBehaviour
         {
             current++;
             transform.GetChild(current-1).gameObject.SetActive(true);
+            if (ScoreCounter.counter.Rage()) { transform.GetChild(current - 1).gameObject.GetComponent<NPC_ControlScript>().PrepareRageMode(); }
         }
     }
 

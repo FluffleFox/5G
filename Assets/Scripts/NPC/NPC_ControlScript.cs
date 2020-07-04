@@ -86,4 +86,11 @@ public class NPC_ControlScript : MonoBehaviour
     {
         index = value;
     }
+
+    public void SetMovementMethod(Movment method)
+    {
+        Destroy(movmentScript);
+        gameObject.AddComponent(method.GetType());
+        movmentScript = GetComponent(method.GetType()) as Movment;
+    }
 }

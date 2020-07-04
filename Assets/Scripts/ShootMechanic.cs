@@ -62,7 +62,7 @@ public class ShootMechanic : MonoBehaviour
         RaycastHit info;
         if (Physics.Raycast(ray, out info))
         {
-            Collider[] inRange = Physics.OverlapSphere(info.point, 5.0f,mask);
+            Collider[] inRange = Physics.OverlapSphere(info.point, 1.5f,mask);
             if (inRange.Length == 0) { return; }
             if (inRange.Length == 1) { inRange[0].gameObject.GetComponent<Hit>().GetHit(); return; }
             GameObject toDestroy=inRange[0].gameObject;

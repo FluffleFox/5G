@@ -75,10 +75,12 @@
     <Compile Include="Assets\Scripts\NPC\Equipment\Equipment.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\BasicHit.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\Hit.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\Beer.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CallPhone.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CameraFace.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicEndGameMovement.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicMovment.cs" />
+    <Compile Include="Assets\Scripts\NPC\Movment\DrunkMovement.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\Movment.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC_ControlScript.cs" />
     <Compile Include="Assets\Scripts\NPCDispository.cs" />
