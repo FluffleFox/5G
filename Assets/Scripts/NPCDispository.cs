@@ -3,7 +3,7 @@
 public class NPCDispository : MonoBehaviour
 {
     public static NPCDispository Dispository;
-    int current = 40;
+    int current = 6;
 
     private void Awake()
     {

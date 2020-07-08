@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\ScoreCounter.cs" />
     <Compile Include="Assets\Scripts\ShootMechanic.cs" />
     <Compile Include="Assets\Scripts\TowerAnimation.cs" />
+    <None Include="Assets\Materials\CutAlpha.shader" />
     <None Include="Assets\Shaders\Grayscale.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
