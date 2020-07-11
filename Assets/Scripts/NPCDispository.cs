@@ -3,9 +3,9 @@
 public class NPCDispository : MonoBehaviour
 {
     public static NPCDispository Dispository;
-    int current = 6;
+    int current = 2;
 
-    private void Awake()
+    public void SetNPCs()
     {
         Dispository = this;
         for (int i = 0; i < transform.childCount; i++)

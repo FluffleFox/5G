@@ -27,9 +27,9 @@ public class ScoreCounter : MonoBehaviour
         eta.SetActive(false);
     }
 
-    public void AddScore()
+    public void AddScore(int scoreToAdd)
     {
-        currentScore++;
+        currentScore+=scoreToAdd;
         score.text = currentScore.ToString();
         reload++;
         if (reload >= 10)

@@ -10,15 +10,16 @@ public class NPC_ControlScript : MonoBehaviour
     [HideInInspector]
     public float movementSpeed;
     [HideInInspector]
-    public GameObject item;
-    [HideInInspector]
     public bool priorityToDestroy = false;
 
     [SerializeField] Movment movmentScript;
     [SerializeField] Hit hitScript;
-    [SerializeField] Equipment equipmentScript;
 
     int index;
+
+    int score = 1;
+    bool bonus = false;
+    bool nerf = false;
 
     void Start()
     {
@@ -52,7 +53,10 @@ public class NPC_ControlScript : MonoBehaviour
             priorityToDestroy = false;
             transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
             movmentScript.MovmentPrepare();
-            equipmentScript.PrepareItem();
+            foreach(Equipment eq in GetComponents<Equipment>())
+            {
+                eq.PrepareItem();
+            }
         }
         else { gameObject.SetActive(false); }
     }
@@ -65,7 +69,6 @@ public class NPC_ControlScript : MonoBehaviour
             Destroy(movmentScript);
             gameObject.AddComponent<BasicEndGameMovement>();
             movmentScript = GetComponent<BasicEndGameMovement>();
-            equipmentScript.PrepareItem();
             hitScript.SetRage(true);
         }
     }
@@ -92,5 +95,23 @@ public class NPC_ControlScript : MonoBehaviour
         Destroy(movmentScript);
         gameObject.AddComponent(method.GetType());
         movmentScript = GetComponent(method.GetType()) as Movment;
+    }
+
+    public void GetScore()
+    {
+        if (priorityToDestroy)
+        {
+            ScoreCounter.counter.AddScore(score);
+        }
+        else if (!rage)
+        {
+            ScoreCounter.counter.LostHP();
+        }
+        else { ScoreCounter.counter.AddScore(score); }
+    }
+
+    public void Effect()
+    {
+        Debug.Log("Smoething");
     }
 }

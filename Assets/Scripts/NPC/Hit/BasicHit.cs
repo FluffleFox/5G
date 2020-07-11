@@ -25,15 +25,7 @@ public class BasicHit : Hit
             control.movementSpeed -= step;
         }
 
-        if (control.priorityToDestroy)
-        {
-            ScoreCounter.counter.AddScore();
-        }
-        else if (!rage)
-        {
-            ScoreCounter.counter.LostHP();
-        }
-        else { ScoreCounter.counter.AddScore(); }
+        control.GetScore();
 
         transform.GetChild(0).GetChild(1).localScale = Vector3.one * 0.55f;
         GetComponent<Collider>().enabled = true;

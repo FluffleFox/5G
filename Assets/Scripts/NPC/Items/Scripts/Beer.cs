@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Beer : MonoBehaviour
+public class Beer : Item
 {
     void Start()
     {
@@ -11,6 +11,7 @@ public class Beer : MonoBehaviour
 
     void Action()
     {
-        transform.parent.GetComponent<NPC_ControlScript>().SetMovementMethod(new DrunkMovement());
+        if (transform.parent!=null && transform.parent.GetComponent<NPC_ControlScript>() != null)
+        { transform.parent.GetComponent<NPC_ControlScript>().SetMovementMethod(new DrunkMovement()); }
     }
 }

@@ -19,7 +19,6 @@ public class Movment : MonoBehaviour
 
         if (Mathf.Abs(transform.position.x)>5f)
         {
-            Debug.Log("out");
             if (control.priorityToDestroy)
             { ScoreCounter.counter.LostHP(); }
             control.Prepare();

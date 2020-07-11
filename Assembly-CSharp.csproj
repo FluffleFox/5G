@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\HeliAnimation.cs" />
     <Compile Include="Assets\Scripts\HeliSceneMenagment.cs" />
     <Compile Include="Assets\Scripts\KarenAI.cs" />
+    <Compile Include="Assets\Scripts\NPC\BasicNPCGen.cs" />
     <Compile Include="Assets\Scripts\NPC\Equipment\BasicEquipment.cs" />
     <Compile Include="Assets\Scripts\NPC\Equipment\Equipment.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\BasicHit.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\Beer.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CallPhone.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CameraFace.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\ForceField.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicEndGameMovement.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicMovment.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\DrunkMovement.cs" />

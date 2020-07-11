@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class BasicEquipment : Equipment
 {
+    GameObject[] items;
+
     public override void PrepareItem()
     {
         base.PrepareItem();
         if (!control.rage)
         {
-            int total = 0;
-            foreach(int k in chaceForItem)
+            for (int i = 0; i < items.Length; i++)
             {
-                total += k;
+                if (Random.Range(0, 100) < items[i].GetComponent<Item>().chance)
+                {
+                    currentItems.Add((GameObject)Instantiate(items[i], transform.position, Quaternion.identity));
+                    currentItems[currentItems.Count - 1].transform.parent = transform;
+                }
             }
-            int rand = Random.Range(0, total);
-            int i = 0;
-            int curr = 0;
-            do
-            {
-                curr += chaceForItem[i];
-                i++;
-            } while (curr < rand);
-            GameObject GO = (GameObject)Instantiate(regularItems[i-1], transform.position, transform.rotation);
-            GO.transform.parent = transform;
-            control.item = GO;
         }
         else
         {
-            GameObject GO = (GameObject)Instantiate(endGameItems[Random.Range(0,endGameItems.Count)], transform.position, transform.rotation);
-            GO.transform.parent = transform;
-            control.item = GO;
+            currentItems.Add((GameObject)Instantiate(rageModeItems[Random.Range(0,rageModeItems.Length)], transform.position, Quaternion.identity));
+            currentItems[currentItems.Count - 1].transform.parent = transform;
         }
     }
+
+    public void Prepare(GameObject[] _items, GameObject[] _rageModeItems)
+    {
+        items = _items;
+        rageModeItems = _rageModeItems;
+    }
+
 }

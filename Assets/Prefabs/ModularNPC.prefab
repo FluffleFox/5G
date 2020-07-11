@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 8752401099508988498}
   - component: {fileID: 8752401099508988499}
   - component: {fileID: 8752401099508988497}
-  - component: {fileID: 8752401099508988500}
   m_Layer: 8
   m_Name: ModularNPC
   m_TagString: Untagged
@@ -276,11 +275,9 @@ MonoBehaviour:
     m_Bits: 256
   rage: 0
   movementSpeed: 0
-  item: {fileID: 0}
   priorityToDestroy: 0
   movmentScript: {fileID: 8752401099508988499}
   hitScript: {fileID: 8752401099508988497}
-  equipmentScript: {fileID: 8752401099508988500}
 --- !u!114 &8752401099508988499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,22 +305,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionTime: 10
   growSpeed: 1.07
---- !u!114 &8752401099508988500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8752401099508988496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a65e1777956efd14aa48519d1255d901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  regularItems:
-  - {fileID: 5668709234999345600, guid: 5aa67d0973d9f75469f489fa95155073, type: 3}
-  - {fileID: 567364893121340592, guid: 224cd112538009e49b4b1f372a5d8bf2, type: 3}
-  chaceForItem: 3200000032000000
-  endGameItems:
-  - {fileID: 6247169882288655264, guid: 50ac3744dd4490e44b2ede226381026a, type: 3}
-  - {fileID: 4720545665799358618, guid: 8e0f1e823e359b3409fa9b806231e1c4, type: 3}

@@ -123,7 +123,7 @@ public class KarenAI : MonoBehaviour
 
         if (detonate > 1000)
         {
-            ScoreCounter.counter.AddScore();
+            ScoreCounter.counter.AddScore(1);
         }
         else if (!rage)
         {
