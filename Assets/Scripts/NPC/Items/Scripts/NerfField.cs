@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceField : Item
+public class NerfField : Item
 {
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<NPC_ControlScript>() != null)
         {
-            other.GetComponent<NPC_ControlScript>().Effect(NPC_ControlScript.effects.Bonus);
+            other.GetComponent<NPC_ControlScript>().Effect(NPC_ControlScript.effects.Nerf);
         }
     }
 
@@ -16,7 +16,7 @@ public class ForceField : Item
     {
         if (other.GetComponent<NPC_ControlScript>() != null)
         {
-            other.GetComponent<NPC_ControlScript>().StopEffect(NPC_ControlScript.effects.Bonus);
+            other.GetComponent<NPC_ControlScript>().StopEffect(NPC_ControlScript.effects.Nerf);
         }
     }
 }

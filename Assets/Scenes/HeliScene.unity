@@ -2417,7 +2417,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ff2b8c1337fc40548bbfd8cb57730eef, type: 2}
+      objectReference: {fileID: 2100000, guid: 3e23446e1c09e1d478d093f5367dcfc9, type: 2}
     - target: {fileID: 8833720299871980622, guid: 1ba259c77ef888440ba0fac4f9d2aee1,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -2709,6 +2709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raySpeed: 4
+  distanceFromCam: 12
 --- !u!120 &3718330300554425342
 LineRenderer:
   m_ObjectHideFlags: 0

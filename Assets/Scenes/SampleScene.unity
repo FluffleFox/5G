@@ -992,7 +992,7 @@ MonoBehaviour:
   tower: {fileID: 4664538043708944596}
   eta: {fileID: 1583475224}
   evacBar: {fileID: 653175683}
-  evacTime: 100
+  evacTime: 30
 --- !u!114 &473418519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,7 +1656,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 2.05e-42, w: 5.9e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 2.005e-42, w: 5.9e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2452,7 +2452,7 @@ PrefabInstance:
     - target: {fileID: 8254898557226560529, guid: d632317baacb7584dac340fcc03be472,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8254898557226560529, guid: d632317baacb7584dac340fcc03be472,
         type: 3}
@@ -3192,9 +3192,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posibleItems:
-  - {fileID: 5456876723856574775, guid: 16b638bad4fc60a40a448c28d3252c5d, type: 3}
   - {fileID: 5668709234999345600, guid: 5aa67d0973d9f75469f489fa95155073, type: 3}
+  - {fileID: 5456876723856574775, guid: 16b638bad4fc60a40a448c28d3252c5d, type: 3}
   - {fileID: 3971492253040422459, guid: 78bfcd75b55177c49a68bb0243614b48, type: 3}
+  - {fileID: 7830956842443334264, guid: 1cf51d8fedcfe3c479f056fbcadb7aeb, type: 3}
   rageModeItems:
   - {fileID: 4720545665799358618, guid: 8e0f1e823e359b3409fa9b806231e1c4, type: 3}
   - {fileID: 6247169882288655264, guid: 50ac3744dd4490e44b2ede226381026a, type: 3}
@@ -4778,10 +4779,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1223072506658978355, guid: b4089cfc1c180a949a7f9f190d087ecf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 65b7bf665d233744a9fac9b2276544bf, type: 2}
     - target: {fileID: 4753863527459964478, guid: b4089cfc1c180a949a7f9f190d087ecf,
         type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588282878546072584, guid: b4089cfc1c180a949a7f9f190d087ecf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b7fe1ba79bfb874ba87f40c9859a925, type: 2}
+    - target: {fileID: 8588282878546072584, guid: b4089cfc1c180a949a7f9f190d087ecf,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588282878546072584, guid: b4089cfc1c180a949a7f9f190d087ecf,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4089cfc1c180a949a7f9f190d087ecf, type: 3}

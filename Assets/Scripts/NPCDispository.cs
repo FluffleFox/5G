@@ -3,7 +3,7 @@
 public class NPCDispository : MonoBehaviour
 {
     public static NPCDispository Dispository;
-    int current = 2;
+    int current = 6;
 
     public void SetNPCs()
     {

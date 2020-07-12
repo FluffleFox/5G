@@ -18,6 +18,8 @@ public class NPC_ControlScript : MonoBehaviour
     int index;
 
     int score = 1;
+
+    public enum effects {Bonus, Nerf };
     bool bonus = false;
     bool nerf = false;
 
@@ -57,6 +59,9 @@ public class NPC_ControlScript : MonoBehaviour
             {
                 eq.PrepareItem();
             }
+            score = 1;
+            bonus = false;
+            nerf = false;
         }
         else { gameObject.SetActive(false); }
     }
@@ -110,8 +115,54 @@ public class NPC_ControlScript : MonoBehaviour
         else { ScoreCounter.counter.AddScore(score); }
     }
 
-    public void Effect()
+    public void Effect(effects effect)
     {
-        Debug.Log("Smoething");
+        switch (effect)
+        {
+            case effects.Bonus: 
+                {
+                    if (!bonus)
+                    {
+                        bonus = true;
+                        score += 1;
+                    }
+                    break; 
+                }
+            case effects.Nerf:
+                {
+                    if (!nerf)
+                    {
+                        nerf = true;
+                        score -= 1;
+                    }
+                    break;
+                }
+        }
+    }
+
+
+    public void StopEffect(effects effect)
+    {
+        switch (effect)
+        {
+            case effects.Bonus:
+                {
+                    if (bonus)
+                    {
+                        bonus = false;
+                        score -= 1;
+                    }
+                    break;
+                }
+            case effects.Nerf:
+                {
+                    if (nerf)
+                    {
+                        nerf = false;
+                        score += 1;
+                    }
+                    break;
+                }
+        }
     }
 }

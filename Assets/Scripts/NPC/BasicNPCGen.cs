@@ -13,15 +13,20 @@ public class BasicNPCGen : MonoBehaviour
     void Awake()
     {
        // posibleItems.AddRange(Resources.LoadAll("/Items", typeof(GameObject[])) as GameObject[]);
-        int itemCount = UnityEngine.Random.Range(2, posibleItems.Count);
+        int itemCount = UnityEngine.Random.Range(1, posibleItems.Count);
         Debug.Log(itemCount);
-        GameObject[] itemsInGame = new GameObject[itemCount];
-        for (int i=0; i<itemCount; i++)
+        GameObject[] itemsInGame = new GameObject[itemCount+1];
+
+        GameObject GO = (GameObject)Instantiate(posibleItems[0], Vector3.down * 5000, Quaternion.identity);
+        posibleItems.RemoveAt(0);
+        itemsInGame[0] = GO;
+
+        for (int i=1; i<=itemCount; i++)
         {
             int index = UnityEngine.Random.Range(0, posibleItems.Count);
             if (posibleItems[index].GetComponent<Item>() == null) { continue; }
             Debug.Log(posibleItems[index].name);
-            GameObject GO = (GameObject)Instantiate(posibleItems[index], Vector3.down * 5000, Quaternion.identity);
+            GO = (GameObject)Instantiate(posibleItems[index], Vector3.down * 5000, Quaternion.identity);
             posibleItems.RemoveAt(index);
             itemsInGame[i] = GO;
         }
