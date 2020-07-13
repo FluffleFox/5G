@@ -15,13 +15,6 @@ public class Movment : MonoBehaviour
     protected virtual void Update()
     {
         Move();
-
-        if (Mathf.Abs(transform.position.x)>5f)
-        {
-            if (control.priorityToDestroy)
-            { ScoreCounter.counter.LostHP(); }
-            control.Prepare();
-        }
     }
     protected virtual void Move()
     {
@@ -31,6 +24,22 @@ public class Movment : MonoBehaviour
     public virtual void MovmentPrepare()
     {
 
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "GameController")
+        {
+            control.Prepare();
+        }
+        if (other.tag== "HPCheeck")
+        {
+            if (control.priorityToDestroy)
+            {
+                ScoreCounter.counter.LostHP();
+            }
+        }
     }
 
 }
