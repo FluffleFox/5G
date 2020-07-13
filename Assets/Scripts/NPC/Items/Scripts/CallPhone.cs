@@ -7,7 +7,7 @@ public class CallPhone : Item
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponentInParent<NPC_ControlScript>() != null)
+        if (GetComponentInParent<NPC_ControlScript>() != null && DeadRay.tower!=null)
         {
             float speed = transform.parent.forward.x * GetComponentInParent<NPC_ControlScript>().movementSpeed;
             float time = Random.Range(0.0f, Mathf.Abs(transform.parent.position.x / speed));

@@ -19,4 +19,15 @@ public class ForceField : Item
             other.GetComponent<NPC_ControlScript>().StopEffect(NPC_ControlScript.effects.Bonus);
         }
     }
+
+    private void OnDestroy()
+    {
+        foreach(Collider k in Physics.OverlapSphere(transform.position, 1.5f))
+        {
+            if (k.gameObject.GetComponent<NPC_ControlScript>()!=null)
+            {
+                k.gameObject.GetComponent<NPC_ControlScript>().StopEffect(NPC_ControlScript.effects.Bonus);
+            }
+        }
+    }
 }

@@ -53,12 +53,12 @@ public class NPC_ControlScript : MonoBehaviour
         if (NPCDispository.Dispository.CanIRespawn(index))
         {
             priorityToDestroy = false;
-            transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1.0f);
-            movmentScript.MovmentPrepare();
-            foreach(Equipment eq in GetComponents<Equipment>())
+            foreach (Equipment eq in GetComponents<Equipment>())
             {
                 eq.PrepareItem();
             }
+            transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1.0f);
+            movmentScript.MovmentPrepare();
             score = 1;
             bonus = false;
             nerf = false;

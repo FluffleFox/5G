@@ -8,7 +8,7 @@ public class DrunkMovement : Movment
 
     private void Start()
     {
-        destination = new Vector3(-5.5f * Mathf.Sign(transform.forward.x), 0.0f, Random.Range(5.5f, 10.5f));
+        destination = new Vector3(-7.5f * Mathf.Sign(transform.forward.x), 0.0f, Random.Range(5.5f, 10.5f));
         movmentSpeed = Random.Range(0.8f, 1.2f);
         control.movementSpeed = movmentSpeed;
     }
