@@ -20,9 +20,8 @@ public class NerfField : Item
         }
     }
 
-    private void OnDestroy()
+    public override void LastFrameAction()
     {
-        Debug.Log(transform.position);
         foreach (Collider k in Physics.OverlapSphere(transform.position, 1.5f))
         {
             if (k.gameObject.GetComponent<NPC_ControlScript>() != null)

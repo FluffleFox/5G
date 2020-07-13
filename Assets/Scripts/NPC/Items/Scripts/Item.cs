@@ -5,4 +5,9 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public int chance;
+
+    public virtual void LastFrameAction()
+    {
+
+    }
 }

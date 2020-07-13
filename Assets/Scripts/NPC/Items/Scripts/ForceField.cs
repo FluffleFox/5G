@@ -20,7 +20,7 @@ public class ForceField : Item
         }
     }
 
-    private void OnDestroy()
+    public override void LastFrameAction()
     {
         foreach(Collider k in Physics.OverlapSphere(transform.position, 1.5f))
         {

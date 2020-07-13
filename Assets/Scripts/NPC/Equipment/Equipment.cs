@@ -17,6 +17,7 @@ public class Equipment : MonoBehaviour
     {
         for (int i = currentItems.Count - 1; i >= 0; i--)
         {
+            currentItems[i].GetComponent<Item>().LastFrameAction();
             Destroy(currentItems[i]);
         }
         currentItems.Clear();
