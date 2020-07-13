@@ -44,7 +44,6 @@ public class NPC_ControlScript : MonoBehaviour
                 DeadRay.tower.Burn();
                 NPCDispository.Dispository.ResetAll();
                 StopRageMode();
-
             }
         }
     }
@@ -76,6 +75,7 @@ public class NPC_ControlScript : MonoBehaviour
             gameObject.AddComponent<BasicEndGameMovement>();
             movmentScript = GetComponent<BasicEndGameMovement>();
             hitScript.SetRage(true);
+            GetComponent<BasicEquipment>().PrepareItem();
         }
     }
 

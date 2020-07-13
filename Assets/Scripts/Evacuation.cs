@@ -18,11 +18,6 @@ public class Evacuation : MonoBehaviour
     public void Evac()
     {
         heli.SetActive(true);
-        foreach(KarenAI karen in GameObject.FindObjectsOfType<KarenAI>())
-        {
-            karen.StopRage();
-        }
-        //Destroy(tower.GetComponent<DeadRay>());
         StartCoroutine(EvacProcedure());
     }
 

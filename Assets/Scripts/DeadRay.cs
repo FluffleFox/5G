@@ -43,20 +43,8 @@ public class DeadRay : MonoBehaviour
             RaycastHit info;
             if (Physics.Raycast(ray, out info))
             {
-                if (info.collider.GetComponent<KarenAI>() != null)
-                {
-                    currentPos = info.collider.transform.position;
-                    Vector3 target = info.collider.transform.position;
-                    target.y = 0;
-                    Vector3 cam = Camera.main.transform.position;
-                    cam.y = 0;
-                    distanceFromCam = Vector3.Distance(target, cam);
-                }
-                else
-                {
-                    distanceFromCam = 5.0f;
-                    currentPos = info.point;
-                }
+                distanceFromCam = 5.0f;
+                currentPos = info.point;
                 lastHit = info.point;
                 line.SetPosition(1, currentPos);
                 ready = false;

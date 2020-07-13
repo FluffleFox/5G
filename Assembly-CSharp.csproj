@@ -70,7 +70,6 @@
     <Compile Include="Assets\Scripts\GeneralGameMenager.cs" />
     <Compile Include="Assets\Scripts\HeliAnimation.cs" />
     <Compile Include="Assets\Scripts\HeliSceneMenagment.cs" />
-    <Compile Include="Assets\Scripts\KarenAI.cs" />
     <Compile Include="Assets\Scripts\NPC\BasicNPCGen.cs" />
     <Compile Include="Assets\Scripts\NPC\Equipment\BasicEquipment.cs" />
     <Compile Include="Assets\Scripts\NPC\Equipment\Equipment.cs" />
