@@ -8,6 +8,7 @@ public class BasicEndGameMovement : Movment
     float baseSpeed;
     private void Start()
     {
+        baseSpeed = Random.Range(0.8f, 1.2f);
         destination = DeadRay.tower.transform.position;
         destination.y = 0.0f;
         transform.rotation = Quaternion.LookRotation(transform.position - destination);
