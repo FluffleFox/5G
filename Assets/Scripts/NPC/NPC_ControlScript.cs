@@ -62,6 +62,7 @@ public class NPC_ControlScript : MonoBehaviour
             score = 1;
             bonus = false;
             nerf = false;
+            GetComponent<Collider>().enabled = true;
         }
         else { gameObject.SetActive(false); }
     }
