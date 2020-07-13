@@ -8,9 +8,7 @@ public class BasicMovment : Movment
 
     private void Start()
     {
-        destination = new Vector3(5.5f * Mathf.Sign(Random.Range(-1.0f, 1.0f)), 0.0f, Random.Range(5.5f, 10.5f));
-        movmentSpeed = Random.Range(0.8f, 2.0f);
-        control.movementSpeed = movmentSpeed;
+        MovmentPrepare();
     }
     protected override void Move()
     {
