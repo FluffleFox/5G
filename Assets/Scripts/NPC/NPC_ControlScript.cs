@@ -64,7 +64,11 @@ public class NPC_ControlScript : MonoBehaviour
             nerf = false;
             GetComponent<Collider>().enabled = true;
         }
-        else { gameObject.SetActive(false); }
+        else 
+        {
+            transform.position = new Vector3(4.75f, 0, UnityEngine.Random.Range(5.5f, 10.5f));
+            gameObject.SetActive(false); 
+        }
     }
 
     public void PrepareRageMode()
