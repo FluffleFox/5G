@@ -37,4 +37,31 @@ public static class SaveMenager
             return firstLoad;
         }
     }
+
+    public static void SaveTargetData(TargetData data)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/Data.dat";
+        FileStream file;
+        if (File.Exists(path))
+        { file = File.OpenWrite(path); }
+        else { file = File.Create(path); }
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+
+
+}
+
+class TargetDataInString
+{
+    string[] items;
+    string[] rageItems;
+    public TargetDataInString(TargetData data)
+    {
+        items = new string[data.items.Length];
+
+    }
 }

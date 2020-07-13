@@ -2,17 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.WSA;
 
 public class BasicNPCGen : MonoBehaviour
 {
 
     public List<GameObject> posibleItems;
     public List<GameObject> rageModeItems;
-    // Start is called before the first frame update
+
     void Awake()
     {
-       // posibleItems.AddRange(Resources.LoadAll("/Items", typeof(GameObject[])) as GameObject[]);
         int itemCount = UnityEngine.Random.Range(1, posibleItems.Count);
         GameObject[] itemsInGame = new GameObject[itemCount+1];
 
@@ -36,8 +34,12 @@ public class BasicNPCGen : MonoBehaviour
             npc.GetComponent<BasicEquipment>().Prepare(itemsInGame, rageModeItems.ToArray());
         }
 
-
         GetComponent<NPCDispository>().SetNPCs();
     }
 
+
+    void Prepare()
+    {
+
+    }
 }

@@ -12,6 +12,6 @@ public class Beer : Item
     void Action()
     {
         if (transform.parent!=null && transform.parent.GetComponent<NPC_ControlScript>() != null)
-        { transform.parent.GetComponent<NPC_ControlScript>().SetMovementMethod(new DrunkMovement()); }
+        { transform.parent.GetComponent<NPC_ControlScript>().SetMovementMethod(typeof(DrunkMovement)); }
     }
 }

@@ -19,7 +19,7 @@ public class DrunkMovement : Movment
 
     public override void MovmentPrepare()
     {
-        control.SetMovementMethod(new BasicMovment());
+        control.SetMovementMethod(typeof(BasicMovment));
     }
 
 }

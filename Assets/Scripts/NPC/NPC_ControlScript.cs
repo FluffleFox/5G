@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,7 +54,7 @@ public class NPC_ControlScript : MonoBehaviour
         if (NPCDispository.Dispository.CanIRespawn(index))
         {
             priorityToDestroy = false;
-            transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
+            transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1.0f);
             movmentScript.MovmentPrepare();
             foreach(Equipment eq in GetComponents<Equipment>())
             {
@@ -95,11 +96,11 @@ public class NPC_ControlScript : MonoBehaviour
         index = value;
     }
 
-    public void SetMovementMethod(Movment method)
+    public void SetMovementMethod(Type type)
     {
         Destroy(movmentScript);
-        gameObject.AddComponent(method.GetType());
-        movmentScript = GetComponent(method.GetType()) as Movment;
+        gameObject.AddComponent(type);
+        movmentScript = GetComponent(type) as Movment;
     }
 
     public void GetScore()

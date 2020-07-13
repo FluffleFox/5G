@@ -54,8 +54,8 @@ public class TowerAnimation : MonoBehaviour
             midDestiny -= midDestiny * Time.deltaTime * dragForce;
             topDestiny -= topDestiny * Time.deltaTime * dragForce;
 
-            mid.transform.localPosition = Vector3.up * 0.5f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
-            top.transform.localPosition = Vector3.up * 2.159919f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
+            mid.transform.localPosition = Vector3.up * 0.9463044f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
+            top.transform.localPosition = Vector3.up * 1.808635f + Vector3.up * Mathf.Sin(Time.realtimeSinceStartup * boincingSpeed) * bouncingScale;
 
             bot.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Sin(Time.realtimeSinceStartup * dancingSpeed) * dancingScale);
         }
