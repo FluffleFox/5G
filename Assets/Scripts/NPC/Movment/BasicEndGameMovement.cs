@@ -16,12 +16,6 @@ public class BasicEndGameMovement : Movment
     protected override void Move()
     {
         transform.Translate((destination - transform.position).normalized * movmentSpeed * Time.deltaTime, Space.World);
-        if(baseSpeed<=0.5f || movmentSpeed <= 0.5f)
-        {
-            movmentSpeed = Random.Range(0.8f, 1.2f);
-            control.movementSpeed = movmentSpeed;
-            baseSpeed = movmentSpeed;
-        }
     }
 
     public override void MovmentPrepare()

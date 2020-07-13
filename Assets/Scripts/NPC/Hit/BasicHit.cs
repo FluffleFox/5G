@@ -27,6 +27,7 @@ public class BasicHit : Hit
 
         control.GetScore();
 
+        control.movementSpeed = step * explosionTime;
         transform.GetChild(0).GetChild(1).localScale = Vector3.one * 0.55f;
         GetComponent<Collider>().enabled = true;
         GameObject GO = (GameObject)Instantiate(Resources.Load("NPCDestroy", typeof(GameObject))as GameObject, transform.position, Quaternion.Euler(-90, 0, 0));
