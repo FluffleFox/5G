@@ -8,22 +8,25 @@ public static class SaveMenager
     {
         Debug.Log("Save");
         BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "Data.fun";
+        string path = Application.persistentDataPath + "/Data.dat";
         FileStream file;
-        file = File.Open(path, FileMode.OpenOrCreate);
+        if (File.Exists(path))
+        { file = File.OpenWrite(path); }
+        else { file = File.Create(path); }
         bf.Serialize(file, data);
         file.Close();
     }
 
     public static PlayerData Load()
     {
-        string path = Application.persistentDataPath + "Data.fun";
+        string path = Application.persistentDataPath + "/Data.dat";
         if (File.Exists(path))
         {
             Debug.Log("Pobieram");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.OpenRead(path);
             PlayerData data = bf.Deserialize(file) as PlayerData;
+            file.Close();
             return data;
         }
         else

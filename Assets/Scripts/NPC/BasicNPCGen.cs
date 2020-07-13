@@ -14,7 +14,6 @@ public class BasicNPCGen : MonoBehaviour
     {
        // posibleItems.AddRange(Resources.LoadAll("/Items", typeof(GameObject[])) as GameObject[]);
         int itemCount = UnityEngine.Random.Range(1, posibleItems.Count);
-        Debug.Log(itemCount);
         GameObject[] itemsInGame = new GameObject[itemCount+1];
 
         GameObject GO = (GameObject)Instantiate(posibleItems[0], Vector3.down * 5000, Quaternion.identity);
@@ -25,7 +24,6 @@ public class BasicNPCGen : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(0, posibleItems.Count);
             if (posibleItems[index].GetComponent<Item>() == null) { continue; }
-            Debug.Log(posibleItems[index].name);
             GO = (GameObject)Instantiate(posibleItems[index], Vector3.down * 5000, Quaternion.identity);
             posibleItems.RemoveAt(index);
             itemsInGame[i] = GO;
