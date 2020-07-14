@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\DeadRay.cs" />
     <Compile Include="Assets\Scripts\DontDestroyableObject.cs" />
     <Compile Include="Assets\Scripts\Evacuation.cs" />
+    <Compile Include="Assets\Scripts\FunctionGen.cs" />
     <Compile Include="Assets\Scripts\GeneralGameMenager.cs" />
     <Compile Include="Assets\Scripts\HeliAnimation.cs" />
     <Compile Include="Assets\Scripts\HeliSceneMenagment.cs" />
