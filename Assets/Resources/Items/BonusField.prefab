@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9105894670347076376}
   - component: {fileID: -3614720710712180800}
   m_Layer: 2
-  m_Name: ForceField
+  m_Name: BonusField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,4 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f03e568eaad7ec4d95a40c6b11108dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  C: 50
+  N: 0.11
+  A: 1.7
+  R: 3
   chance: 10
