@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
-    protected List<GameObject>currentItems = new List<GameObject>();
+    [SerializeField]
+    public GameObject[] normalModeItems;
     protected NPC_ControlScript control;
+    [SerializeField]
     protected GameObject[] rageModeItems;
 
     private void Awake()
@@ -13,14 +15,18 @@ public class Equipment : MonoBehaviour
         control = GetComponent<NPC_ControlScript>();
     }
 
-    public virtual void PrepareItem() 
+    public virtual void PrepareItem()
     {
-        for (int i = currentItems.Count - 1; i >= 0; i--)
+
+        for (int i = 0; i < normalModeItems.Length; i++)
         {
-            if (currentItems[i].GetComponent<Item>() != null)
-            { currentItems[i].GetComponent<Item>().LastFrameAction(); }
-            Destroy(currentItems[i]);
+            normalModeItems[i].GetComponent<Item>().LastFrameAction();
+            normalModeItems[i].SetActive(false);
         }
-        currentItems.Clear();
+        for (int i = 0; i < rageModeItems.Length; i++)
+        {
+            //rageModeItems[i].GetComponent<Item>().LastFrameAction();
+            rageModeItems[i].SetActive(false);
+        }
     }
 }

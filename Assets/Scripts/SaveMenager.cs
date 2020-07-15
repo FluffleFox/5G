@@ -22,7 +22,7 @@ public static class SaveMenager
         string path = Application.persistentDataPath + "/Data.dat";
         if (File.Exists(path))
         {
-            Debug.Log("Pobieram");
+            Debug.Log("Pobieram dane gracza");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.OpenRead(path);
             PlayerData data = bf.Deserialize(file) as PlayerData;
@@ -31,69 +31,90 @@ public static class SaveMenager
         }
         else
         {
-            Debug.Log("Brak Pliku do odczytu");
+            Debug.Log("Brak pliku gracza do odczytu");
             PlayerData firstLoad = new PlayerData(1, 1000, 1, 1, 1, 1);
             Save(firstLoad);
             return firstLoad;
         }
     }
 
-    public static void SaveTargetData(TargetData data)
+    public static void SaveTargetData(float[] _data)
     {
-        BinaryFormatter bf = new BinaryFormatter();
+        string json = JsonUtility.ToJson(new TargetData(_data));
+
         string path = Application.persistentDataPath + "/TargetData.dat";
         FileStream file;
         if (File.Exists(path))
         { file = File.OpenWrite(path); }
         else { file = File.Create(path); }
-        TargetDataInString tmp = new TargetDataInString(data);
-        bf.Serialize(file, tmp);
+
+        using (StreamWriter writer = new StreamWriter(file)) 
+        { writer.Write(json); }
+
         file.Close();
     }
 
-    public static TargetData LoadTargetData()
+    public static float[] LoadTargetData(ref float[] ret)
     {
+        Debug.Log(Application.persistentDataPath);
         string path = Application.persistentDataPath + "/TargetData.dat";
         if (File.Exists(path))
         {
-            Debug.Log("Pobieram");
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.OpenRead(path);
-            TargetDataInString data = bf.Deserialize(file) as TargetDataInString;
-            file.Close();
-            TargetData tmp =new TargetData(data);
-            return tmp;
+            Debug.Log("Pobieram dane celu");
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string json = reader.ReadToEnd();
+                Debug.Log(json);
+                TargetData tmp = new TargetData(new float[4]);
+                JsonUtility.FromJsonOverwrite(json, tmp);
+                for (int i = 0; i < tmp.chances.Length; i++)
+                {
+                    Debug.Log(tmp.chances[i]);
+                }
+                ret = tmp.chances;
+                return ret;
+            }
         }
         else
         {
-            Debug.Log("Brak Pliku do odczytu");
-
-            /*PlayerData firstLoad = new PlayerData(1, 1000, 1, 1, 1, 1);
-            Save(firstLoad);
-            return firstLoad;*/
+            Debug.Log("Brak pliku celu do odczytu");
+            ret = null;
             return null;
         }
     }
 
+    /* public static void SaveTargetData(float[] _data)
+     {
+         Debug.Log("Zapisuje dane gracza");
+         TargetData data = new TargetData(_data);
+         BinaryFormatter bf = new BinaryFormatter();
+         string path = Application.persistentDataPath + "/TargetData.dat";
+         FileStream file;
+         if (File.Exists(path))
+         { file = File.OpenWrite(path); }
+         else { file = File.Create(path); }
+         bf.Serialize(file, data);
+         file.Close();
+     }
 
-
-}
-
-public class TargetDataInString
-{
-    public string[] items;
-    public string[] rageItems;
-    public TargetDataInString(TargetData data)
-    {
-        items = new string[data.items.Length];
-        for(int i=0; i<data.items.Length; i++)
-        {
-            items[i] = "/Items/" + data.items[i].name;
-        }
-        rageItems = new string[data.rageModeItems.Length];
-        for (int i = 0; i < data.rageModeItems.Length; i++)
-        {
-            rageItems[i] = "/Items/" + data.rageModeItems[i].name;
-        }
-    }
+     public static float[] LoadTargetData(ref float[] ret)
+     {
+         string path = Application.persistentDataPath + "/TargetData.dat";
+         if (File.Exists(path))
+         {
+             Debug.Log("Pobieram dane celu");
+             BinaryFormatter bf = new BinaryFormatter();
+             FileStream file = File.OpenRead(path);
+             TargetData data = bf.Deserialize(file) as TargetData;
+             file.Close();
+             ret = data.chances;
+             return data.chances;
+         }
+         else
+         {
+             Debug.Log("Brak pliku celu do odczytu");
+             ret = null;
+             return null;
+         }
+     }*/
 }

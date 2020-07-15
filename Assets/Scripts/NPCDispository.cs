@@ -5,12 +5,25 @@ public class NPCDispository : MonoBehaviour
     public static NPCDispository Dispository;
     int current = 6;
 
-    public void SetNPCs()
+    private void Awake()
     {
         Dispository = this;
+    }
+
+    public void SetNPCs(float[] _chance)
+    {
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<NPC_ControlScript>().SetIndex(i);
+            for(int j=0; j< _chance.Length; j++)
+            {
+                transform.GetChild(i).Find("Items").GetChild(j).GetComponent<Item>().chance = _chance[j];
+            }
+
+            for(int j=0; j< transform.GetChild(i).Find("Items").childCount; j++)
+            {   
+                transform.GetChild(i).Find("Items").GetChild(j).gameObject.SetActive(false);
+            }
             if (i >= current) { transform.GetChild(i).gameObject.SetActive(false); }
         }
     }

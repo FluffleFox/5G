@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - HPCheeck
+  - NPC
   layers:
   - Default
   - TransparentFX

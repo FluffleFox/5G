@@ -2949,9 +2949,10 @@ GameObject:
   - component: {fileID: 1288623987}
   - component: {fileID: 1288623989}
   - component: {fileID: 1288623988}
+  - component: {fileID: 1288623990}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3036,11 +3037,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd242aa454dbda43bd7e4583bc2b795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posibleItems:
+--- !u!114 &1288623990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288623986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f24158f26342b4293b800a60460cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalModeItems:
   - {fileID: 5668709234999345600, guid: 5aa67d0973d9f75469f489fa95155073, type: 3}
   - {fileID: 5456876723856574775, guid: 16b638bad4fc60a40a448c28d3252c5d, type: 3}
-  - {fileID: 3971492253040422459, guid: 78bfcd75b55177c49a68bb0243614b48, type: 3}
   - {fileID: 7830956842443334264, guid: 1cf51d8fedcfe3c479f056fbcadb7aeb, type: 3}
+  - {fileID: 3971492253040422459, guid: 78bfcd75b55177c49a68bb0243614b48, type: 3}
   rageModeItems:
   - {fileID: 4720545665799358618, guid: 8e0f1e823e359b3409fa9b806231e1c4, type: 3}
   - {fileID: 6247169882288655264, guid: 50ac3744dd4490e44b2ede226381026a, type: 3}
