@@ -1,36 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicNPCGen : MonoBehaviour
 {
-    float[] chances;
-    public void Start()
+
+    public List<GameObject> posibleItems;
+    public List<GameObject> rageModeItems;
+
+    void Awake()
     {
-        if (GeneralGameMenager.instance.chances == null)
+        int itemCount = UnityEngine.Random.Range(1, posibleItems.Count);
+        GameObject[] itemsInGame = new GameObject[itemCount+1];
+
+        GameObject GO = (GameObject)Instantiate(posibleItems[0], Vector3.down * 5000, Quaternion.identity);
+        posibleItems.RemoveAt(0);
+        itemsInGame[0] = GO;
+
+        for (int i=1; i<=itemCount; i++)
         {
-            Generate();
+            int index = UnityEngine.Random.Range(0, posibleItems.Count);
+            if (posibleItems[index].GetComponent<Item>() == null) { continue; }
+            GO = (GameObject)Instantiate(posibleItems[index], Vector3.down * 5000, Quaternion.identity);
+            posibleItems.RemoveAt(index);
+            itemsInGame[i] = GO;
         }
-        else
+
+
+        foreach (NPC_ControlScript npc in GameObject.FindObjectsOfType<NPC_ControlScript>())
         {
-            chances = SaveMenager.LoadTargetData(ref chances);
-            GetComponent<NPCDispository>().SetNPCs(chances);
+            npc.gameObject.AddComponent<BasicEquipment>();
+            npc.GetComponent<BasicEquipment>().Prepare(itemsInGame, rageModeItems.ToArray());
         }
+
+        GetComponent<NPCDispository>().SetNPCs();
     }
-    void Generate()
+
+
+    void Prepare()
     {
-        Debug.Log("Generate");
-        GameObject sample = GameObject.FindGameObjectWithTag("NPC");
-        GameObject[] tempItemList = sample.GetComponent<Equipment>().normalModeItems;
-        chances=new float[tempItemList.Length];
-        for (int i=0; i<tempItemList.Length; i++)
-        {
-            float tmpMaxChance = tempItemList[i].GetComponent<Item>().GetMaxChance(1);//zamiast 1 powinien być aktualny poziom
-            if (tmpMaxChance <= 0.5f) continue;
-            chances[i]= Random.Range(0.0f, tmpMaxChance);
-        }
-        SaveMenager.SaveTargetData(chances);
-        GeneralGameMenager.instance.chances = chances;
-        GetComponent<NPCDispository>().SetNPCs(chances);
+
     }
 }

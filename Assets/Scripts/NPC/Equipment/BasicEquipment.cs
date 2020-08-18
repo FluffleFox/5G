@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class BasicEquipment : Equipment
 {
+    GameObject[] items;
+
     public override void PrepareItem()
     {
         base.PrepareItem();
         if (!control.rage)
         {
-            for (int i = 0; i < normalModeItems.Length; i++)
+            for (int i = 0; i < items.Length; i++)
             {
-                if (Random.Range(0, 100) < normalModeItems[i].GetComponent<Item>().chance)
+                if (Random.Range(0, 100) < items[i].GetComponent<Item>().chance)
                 {
-                    normalModeItems[i].SetActive(true);
+                    currentItems.Add((GameObject)Instantiate(items[i], transform.position, Quaternion.identity));
+                    currentItems[currentItems.Count - 1].transform.parent = transform;
                 }
             }
         }
         else
         {
-            rageModeItems[Random.Range(0, rageModeItems.Length)].SetActive(true);
+            currentItems.Add((GameObject)Instantiate(rageModeItems[Random.Range(0,rageModeItems.Length)], transform.position, Quaternion.identity));
+            currentItems[currentItems.Count - 1].transform.parent = transform;
         }
     }
+
+    public void Prepare(GameObject[] _items, GameObject[] _rageModeItems)
+    {
+        items = _items;
+        rageModeItems = _rageModeItems;
+    }
+
 }
