@@ -80,6 +80,7 @@ public class NPC_ControlScript : MonoBehaviour
             gameObject.AddComponent<BasicEndGameMovement>();
             movmentScript = GetComponent<BasicEndGameMovement>();
             hitScript.SetRage(true);
+            transform.rotation = Quaternion.LookRotation(transform.position - DeadRay.tower.transform.position);
             GetComponent<BasicEquipment>().PrepareItem();
         }
     }
