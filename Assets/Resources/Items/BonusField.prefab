@@ -123,8 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f03e568eaad7ec4d95a40c6b11108dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  C: 50
-  N: 0.11
-  A: 1.7
-  R: 3
-  chance: 10
+  chance: 0
