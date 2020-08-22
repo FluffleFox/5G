@@ -20,7 +20,7 @@ public class BasicHit : Hit
         float step = control.movementSpeed / explosionTime;
         for (int i = 0; i < explosionTime; i++)
         {
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(0.01f);
             transform.GetChild(0).GetChild(1).localScale *= growSpeed;
             control.movementSpeed -= step;
         }
