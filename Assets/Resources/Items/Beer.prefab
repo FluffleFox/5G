@@ -45,6 +45,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chance: 0
+  chanceOverLevels:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 10.277023
+      value: 20.14219
+      inSlope: 0.42650977
+      outSlope: 0.42650977
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0842689
+    - serializedVersion: 3
+      time: 99.20607
+      value: 60.433067
+      inSlope: -0.66427946
+      outSlope: -0.66427946
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0909717
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  model: {fileID: 5667285425042645525}
 --- !u!1001 &4433744385831942940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,6 +179,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f5db05886a52f4383a042edf52c6bf, type: 3}
+--- !u!1 &5667285425042645525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 46f5db05886a52f4383a042edf52c6bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 4433744385831942940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8718238569463582726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 46f5db05886a52f4383a042edf52c6bf,

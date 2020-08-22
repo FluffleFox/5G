@@ -16,6 +16,8 @@ public class FunctionGen : MonoBehaviour
     public float chanceAtMax;
     public int unlockLevel;
 
+    public int cheeckLevel;
+
     LineRenderer Line;
     void Start()
     {
@@ -31,8 +33,14 @@ public class FunctionGen : MonoBehaviour
         for(int i=1; i<=MaxLevelToAnalize; i++)
         {
             if (i - R == 0) continue;
-            Line.SetPosition(i - 1, new Vector3(i, C * (1.0f - (1.0f / Mathf.Pow(A*(i-R), N))), 0));
+            float y = C * (1.0f - (1.0f / Mathf.Pow(A * (i - R), N)));
+            Line.SetPosition(i - 1, new Vector3(i,y, 0));
+            if (i == cheeckLevel)
+            {
+                Debug.Log(y);
+            }
             if(unlockLevel==-1 && Line.GetPosition(i).y > 0.5f) { unlockLevel = i; }
+
         }
         chanceAtMax = Line.GetPosition(MaxLevelToAnalize - 1).y;
     }

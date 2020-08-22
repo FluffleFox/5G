@@ -169,7 +169,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f67cac4ef88304bb4a5f98a411eccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chance: 50
+  chance: 0
+  chanceOverLevels:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.00014070934
+      value: 50.000713
+      inSlope: 0.66186875
+      outSlope: 0.66186875
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.052713286
+    - serializedVersion: 3
+      time: 100.04333
+      value: 70.06584
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  model: {fileID: 5668709234345444300}
 --- !u!1 &5668709235215304314
 GameObject:
   m_ObjectHideFlags: 0

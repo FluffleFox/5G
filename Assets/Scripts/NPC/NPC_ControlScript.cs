@@ -13,21 +13,12 @@ public class NPC_ControlScript : MonoBehaviour
     [HideInInspector]
     public bool priorityToDestroy = false;
 
-    [SerializeField] Movment movmentScript;
-    [SerializeField] Hit hitScript;
+    [SerializeField] Movment movmentScript=null;
+    [SerializeField] Hit hitScript=null;
 
     int index;
+    public int score = 0;
 
-    int score = 1;
-
-    public enum effects {Bonus, Nerf };
-    bool bonus = false;
-    bool nerf = false;
-
-    void Start()
-    {
-        Prepare();
-    }
 
     void Update()
     {
@@ -53,16 +44,21 @@ public class NPC_ControlScript : MonoBehaviour
         if (NPCDispository.Dispository.CanIRespawn(index))
         {
             priorityToDestroy = false;
-            foreach (Equipment eq in GetComponents<Equipment>())
+            score = 0;
+            foreach (Item k in GetComponentsInChildren<Item>())
             {
-                eq.PrepareItem();
+                if (UnityEngine.Random.Range(0, 100) < k.chance)
+                {
+                    k.enabled = true;
+                    k.ItemAction();
+                }
+                else
+                {
+                    k.enabled = false;
+                }
             }
             transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1.0f);
             movmentScript.MovmentPrepare();
-            score = 1;
-            bonus = false;
-            nerf = false;
-            GetComponent<Collider>().enabled = true;
         }
         else 
         {
@@ -81,7 +77,7 @@ public class NPC_ControlScript : MonoBehaviour
             movmentScript = GetComponent<BasicEndGameMovement>();
             hitScript.SetRage(true);
             transform.rotation = Quaternion.LookRotation(transform.position - DeadRay.tower.transform.position);
-            GetComponent<BasicEquipment>().PrepareItem();
+            //Zmienić przedmioty pod rage
         }
     }
 
@@ -120,56 +116,5 @@ public class NPC_ControlScript : MonoBehaviour
             ScoreCounter.counter.LostHP();
         }
         else { ScoreCounter.counter.AddScore(score); }
-    }
-
-    public void Effect(effects effect)
-    {
-        switch (effect)
-        {
-            case effects.Bonus: 
-                {
-                    if (!bonus)
-                    {
-                        bonus = true;
-                        score += 1;
-                    }
-                    break; 
-                }
-            case effects.Nerf:
-                {
-                    if (!nerf)
-                    {
-                        nerf = true;
-                        score -= 1;
-                    }
-                    break;
-                }
-        }
-    }
-
-
-    public void StopEffect(effects effect)
-    {
-        switch (effect)
-        {
-            case effects.Bonus:
-                {
-                    if (bonus)
-                    {
-                        bonus = false;
-                        score -= 1;
-                    }
-                    break;
-                }
-            case effects.Nerf:
-                {
-                    if (nerf)
-                    {
-                        nerf = false;
-                        score += 1;
-                    }
-                    break;
-                }
-        }
     }
 }

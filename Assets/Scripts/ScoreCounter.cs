@@ -21,16 +21,34 @@ public class ScoreCounter : MonoBehaviour
     float cooldown;
     int reload = 0;
 
+    int multipler = 1;
+    int nextMultipler = 1;
+    float currentMultiplerValue;
+    public Image multiplerFillZone;
+    public Text multiplerText;
+
+
     private void Start()
     {
         counter = this;
         eta.SetActive(false);
     }
 
+
     public void AddScore(int scoreToAdd)
     {
-        currentScore+=scoreToAdd;
+        currentScore+=scoreToAdd*multipler;
         score.text = currentScore.ToString();
+
+        currentMultiplerValue += 1;
+        if (currentMultiplerValue > nextMultipler) 
+        {
+            multipler += 1;
+            multiplerText.text = multipler.ToString();
+            currentMultiplerValue -= nextMultipler;
+        }
+        multiplerFillZone.fillAmount = currentMultiplerValue / nextMultipler;
+
         reload++;
         if (reload >= 10)
         {
@@ -83,6 +101,23 @@ public class ScoreCounter : MonoBehaviour
                 Evacuation.instance.Evac();
             }
         }
+
+        if (multipler > 1)
+        {
+            currentMultiplerValue -= Time.deltaTime * multipler*0.2f;
+            if (currentMultiplerValue < 0.0f)
+            {
+                multipler -= 1;
+                currentMultiplerValue += nextMultipler;
+                multiplerText.text = multipler.ToString();
+            }
+        }
+        else if (currentMultiplerValue > 0.0f)
+        {
+            currentMultiplerValue -= Time.deltaTime * multipler * 0.2f;
+        }
+        multiplerFillZone.fillAmount = currentMultiplerValue / nextMultipler;
+        
     }
 
     public bool Rage()

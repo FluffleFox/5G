@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Beer : Item
+﻿public class Beer : Item
 {
-    void Start()
+    public override void ItemAction()
     {
         Invoke("Action", 0.5f);
     }
