@@ -31,9 +31,5 @@ public class BasicEndGameMovement : Movment
             baseSpeed = movmentSpeed;
             transform.rotation = Quaternion.LookRotation(transform.position - destination);
         }
-        else
-        {
-            control.StopRageMode();
-        }
     }
 }

@@ -4,30 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class HeliSceneMenagment : MonoBehaviour
+public class UpgradeMenagment : MonoBehaviour
 {
-    public Transform[] moveOnDropObject;
-    public float[] moveOnDropSpeed;
-    public int dropTime = 30;
-    float dropSpeed = 0.01f;
-    bool ready = false;
-
     public Text levelText;
     public Text armorLevelText;
     public Text forceLevelText;
-    public Text heliLevelText;
+    public Text accurateLevelText;
     public Text moneyText;
 
     int money;
     int armorUpgradeCost;
     int forceUpgradeCost;
-    int heliUpgradeCost;
+    int accurateUpgradeCost;
 
     int level;
     int armorLevel;
     int forceLevel;
-    int heliLevel;
+    int accurateLevel;
 
+
+    bool ready = false;
 
     private void Start()
     {
@@ -45,45 +41,32 @@ public class HeliSceneMenagment : MonoBehaviour
         forceLevel = data.accurateLevel;
         forceUpgradeCost = data.accurateLevel * 100;
 
-        heliLevelText.text = data.heliLevel.ToString();
-        heliLevel = data.heliLevel;
-        heliUpgradeCost = data.heliLevel * 100;
-        SaveMenager.Save(new PlayerData(level, money, armorLevel, heliLevel, forceLevel, 2));
+        accurateLevelText.text = data.heliLevel.ToString();
+        accurateLevel = data.heliLevel;
+        accurateUpgradeCost = data.heliLevel * 100;
+        SaveMenager.Save(new PlayerData(level, money, armorLevel, accurateLevel, forceLevel));
     }
 
-    public void Ready()
+   public void Ready()
    {
         if (!ready)
         {
-            SaveMenager.Save(new PlayerData(level, money, armorLevel, heliLevel, forceLevel, 1));
             ready = true;
-            StartCoroutine(Drop()); 
+            GeneralGameMenager.instance.ChangeGameState(GeneralGameMenager.gameState.Normal);
         }
    }
 
-    IEnumerator Drop()
+    
+    public void UpgradeAccurate()
     {
-        for(int i=0; i<dropTime; i++)
+        if (money >= accurateUpgradeCost)
         {
-            for(int j=0; j<moveOnDropObject.Length; j++)
-            {
-                moveOnDropObject[j].transform.position += Vector3.up * i * 9.81f * dropSpeed * moveOnDropSpeed[j];
-                yield return new WaitForSecondsRealtime(dropSpeed);
-            }
-        }
-        SceneManager.LoadScene("SampleScene");
-    }
-
-    public void UpgradeHeli()
-    {
-        if (money >= heliUpgradeCost)
-        {
-            money -= heliUpgradeCost;
-            heliLevel++;
-            heliLevelText.text = heliLevel.ToString();
+            money -= accurateUpgradeCost;
+            accurateLevel++;
+            accurateLevelText.text = accurateLevel.ToString();
             moneyText.text = money.ToString();
-            heliUpgradeCost = heliLevel * 100;
-            SaveMenager.Save(new PlayerData(level, money, armorLevel, heliLevel, forceLevel, 1));
+            accurateUpgradeCost = accurateLevel * 100;
+            SaveMenager.Save(new PlayerData(level, money, armorLevel, accurateLevel, forceLevel));
         }
     }
 
@@ -96,7 +79,7 @@ public class HeliSceneMenagment : MonoBehaviour
             armorLevelText.text = armorLevel.ToString();
             moneyText.text = money.ToString();
             armorUpgradeCost = armorLevel * 100;
-            SaveMenager.Save(new PlayerData(level, money, armorLevel, heliLevel, forceLevel, 1));
+            SaveMenager.Save(new PlayerData(level, money, armorLevel, accurateLevel, forceLevel));
         }
     }
 
@@ -109,7 +92,7 @@ public class HeliSceneMenagment : MonoBehaviour
             forceLevelText.text = forceLevel.ToString();
             moneyText.text = money.ToString();
             forceUpgradeCost = forceLevel * 100;
-            SaveMenager.Save(new PlayerData(level, money, armorLevel, heliLevel, forceLevel, 1));
+            SaveMenager.Save(new PlayerData(level, money, armorLevel, accurateLevel, forceLevel));
         }
     }
 

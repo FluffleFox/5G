@@ -11,8 +11,8 @@ public class ShootMechanic : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!ScoreCounter.counter.Rage()) Shoot();
-            else DesperateShoot();
+            if (GeneralGameMenager.instance.currentGameState==GeneralGameMenager.gameState.Normal) Shoot();
+            else if (GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Rage) DesperateShoot();
         }
     }
 
@@ -20,63 +20,89 @@ public class ShootMechanic : MonoBehaviour
     void Shoot()
     {
         if (DeadRay.tower != null)
-        { source.PlayOneShot(clip); }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit info;
-        GameObject first=null;
-        do
         {
-            if (Physics.Raycast(ray, out info))
+            source.PlayOneShot(clip);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit info;
+            GameObject first = null;
+            int maxScore = 0;
+            GameObject toDestroy = null;
+            Vector3 hitPoint = Vector3.zero;
+            do
             {
-                if (info.collider.GetComponent<NPC_ControlScript>() != null)
+                if (Physics.Raycast(ray, out info))
                 {
-                    if (first == null)
+                    if (info.collider.GetComponent<NPC_ControlScript>() != null)
                     {
-                        first = info.collider.gameObject;
-                    }
+                        if (first == null)
+                        {
+                            first = info.collider.gameObject;
+                        }
 
-                    if (info.collider.GetComponent<NPC_ControlScript>().priorityToDestroy)
-                    {
-                        info.collider.GetComponent<Hit>().GetHit();
-                        return;
+                        if (info.collider.GetComponent<NPC_ControlScript>().score > maxScore)
+                        {
+                            maxScore = info.collider.GetComponent<NPC_ControlScript>().score;
+                            toDestroy = info.collider.gameObject;
+                        }
+                        ray.origin = info.point + ray.direction.normalized * 0.05f;
                     }
-
-                    ray.origin = info.point + ray.direction.normalized * 0.05f;
+                    else { hitPoint = info.point; break; }
                 }
                 else { break; }
-            }
-            else { break; }
-        } while (true);
+            } while (true);
 
-        if (first != null)
-        {
-            first.GetComponent<Hit>().GetHit();
+            if (toDestroy != null)
+            {
+                DeadRay.tower.Shoot(toDestroy.transform.position);
+                toDestroy.GetComponent<Hit>().GetHit();
+            }
+            else if (first != null)
+            {
+                DeadRay.tower.Shoot(first.transform.position);
+                first.GetComponent<Hit>().GetHit();
+            }
+            else
+            {
+                DeadRay.tower.Shoot(hitPoint);
+            }
         }
     }
 
     void DesperateShoot()
     {
         if (DeadRay.tower != null)
-        { source.PlayOneShot(clip); }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit info;
-        if (Physics.Raycast(ray, out info))
         {
-            Collider[] inRange = Physics.OverlapSphere(info.point, 1.5f,mask);
-            if (inRange.Length == 0) { return; }
-            if (inRange.Length == 1) { inRange[0].gameObject.GetComponent<Hit>().GetHit(); return; }
-            GameObject toDestroy=inRange[0].gameObject;
-            float distance = float.MaxValue;
-            for(int i=0; i<inRange.Length; i++)
+            source.PlayOneShot(clip);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit info;
+            if (Physics.Raycast(ray, out info))
             {
-                float curr = Vector3.Distance(info.point, inRange[i].transform.position);
-                if (curr < distance)
+                Collider[] inRange = Physics.OverlapSphere(info.point, 1.5f, mask);
+                if (inRange.Length == 0)
                 {
-                    distance = curr;
-                    toDestroy = inRange[i].gameObject;
+                    DeadRay.tower.Shoot(info.point);
+                    return;
                 }
+                if (inRange.Length == 1)
+                {
+                    DeadRay.tower.Shoot(inRange[0].gameObject.transform.position);
+                    inRange[0].gameObject.GetComponent<Hit>().GetHit();
+                    return;
+                }
+                GameObject toDestroy = inRange[0].gameObject;
+                float distance = float.MaxValue;
+                for (int i = 0; i < inRange.Length; i++)
+                {
+                    float curr = Vector3.Distance(info.point, inRange[i].transform.position);
+                    if (curr < distance)
+                    {
+                        distance = curr;
+                        toDestroy = inRange[i].gameObject;
+                    }
+                }
+                DeadRay.tower.Shoot(toDestroy.transform.position);
+                toDestroy.GetComponent<Hit>().GetHit();
             }
-            toDestroy.GetComponent<Hit>().GetHit();
         }
     }
 }

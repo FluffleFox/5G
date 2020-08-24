@@ -8,7 +8,6 @@ public class DeadRay : MonoBehaviour
     Transform center;
     LineRenderer line;
     public float raySpeed = 4;
-    //public GameObject particle;
     Vector3 lastHit;
     Vector3 currentPos;
     float currentSpeed;
@@ -30,6 +29,7 @@ public class DeadRay : MonoBehaviour
         towerAnimation = GetComponent<TowerAnimation>();
         towerAnimation.midDropAngle = new Vector3(Random.Range(90.0f, 100.0f), Random.Range(0.0f, 360.0f), 0.0f);
         towerAnimation.topDropAngle = towerAnimation.midDropAngle+ new Vector3(Random.Range(-40.0f, 10.0f), Random.Range(-45.0f, 45.0f), Random.Range(-180.0f,180.0f));
+        GeneralGameMenager.instance.SwitchToNormal.AddListener(Respawn);
     }
 
     private void Update()
@@ -37,21 +37,6 @@ public class DeadRay : MonoBehaviour
         float distance = Vector3.Distance(center.position, Camera.main.transform.position) - distanceFromCam;
         Vector3 source = center.position + (Camera.main.transform.position - center.position).normalized * distance;
         line.SetPosition(0, source);
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit info;
-            if (Physics.Raycast(ray, out info))
-            {
-                distanceFromCam = 5.0f;
-                currentPos = info.point;
-                lastHit = info.point;
-                line.SetPosition(1, currentPos);
-                ready = false;
-                currentSpeed = 1.5f;
-                towerAnimation.AddShootForce(center.position - currentPos);
-            }
-        }
 
         if (!ready)
         {
@@ -67,6 +52,17 @@ public class DeadRay : MonoBehaviour
         else { line.SetPosition(1, source); }
     }
 
+    public void Shoot(Vector3 _point)
+    {
+        distanceFromCam = 5.0f;
+        currentPos = _point;// info.point;
+        lastHit = _point;// info.point;
+        line.SetPosition(1, currentPos);
+        ready = false;
+        currentSpeed = 1.5f;
+        towerAnimation.AddShootForce(center.position - currentPos);
+    }
+
     public void Burn()
     {
         GameObject particle = Resources.Load("TowerDown", typeof(GameObject)) as GameObject;
@@ -79,6 +75,11 @@ public class DeadRay : MonoBehaviour
         GetComponent<TowerAnimation>().BurnThisTower();
         line.SetPosition(0, Vector3.down);
         line.SetPosition(1, Vector3.down);
-        Destroy(this);
+        tower = null;
+    }
+
+    void Respawn()
+    {
+        tower = this;
     }
 }

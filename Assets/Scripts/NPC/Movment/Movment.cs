@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Movment : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class Movment : MonoBehaviour
         }
         if (other.tag== "HPCheeck")
         {
-            if (control.priorityToDestroy)
+            if (control.score>0)
             {
                 ScoreCounter.counter.LostHP();
             }

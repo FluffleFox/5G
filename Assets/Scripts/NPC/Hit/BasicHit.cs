@@ -32,7 +32,7 @@ public class BasicHit : Hit
         GetComponent<Collider>().enabled = true;
         GameObject GO = (GameObject)Instantiate(Resources.Load("NPCDestroy", typeof(GameObject))as GameObject, transform.position, Quaternion.Euler(-90, 0, 0));
         GO.GetComponent<Renderer>().material.color = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color;
-        Destroy(GO, 1.0f);
+       // Destroy(GO, 1.0f);
         GetComponent<NPC_ControlScript>().Prepare();
     }
 }

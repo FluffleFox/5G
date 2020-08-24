@@ -9,10 +9,24 @@ public class Item : MonoBehaviour
     [SerializeField]
     protected GameObject model=null;
 
+    private void Awake()
+    {
+        ResetChance();
+    }
+
     private void OnEnable()
     {
-        chance = chanceOverLevels.Evaluate((float)GeneralGameMenager.instance.data.level);
         model.SetActive(true);
+    }
+
+    protected void SetChance()
+    {
+        chance = chanceOverLevels.Evaluate((float)GeneralGameMenager.instance.data.level);
+    }
+
+    protected void ResetChance()
+    {
+        chance = 0;
     }
 
     private void OnDisable()

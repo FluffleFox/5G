@@ -1,13 +1,27 @@
-﻿public class Beer : Item
+﻿using UnityEngine;
+
+public class Beer : Item
 {
-    public override void ItemAction()
+    private void Start()
     {
-        Invoke("Action", 0.5f);
+        GeneralGameMenager.instance.SwitchToNormal.AddListener(SetChance);
+        GeneralGameMenager.instance.SwitchToRage.AddListener(ResetChance);
+        GeneralGameMenager.instance.SwitchToRage.AddListener(Hide);
+        if (GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Rage)
+        {
+            ResetChance();
+            Hide();
+        }
     }
 
-    void Action()
+    private void Update()
     {
-        if (transform.parent!=null && transform.parent.GetComponent<NPC_ControlScript>() != null)
-        { transform.parent.GetComponent<NPC_ControlScript>().SetMovementMethod(typeof(DrunkMovement)); }
+        transform.parent.Translate(transform.parent.right * Mathf.Sin(Time.realtimeSinceStartup) * Time.deltaTime * 0.5f, Space.World);
+    }
+
+    void Hide()
+    {
+        model.SetActive(false);
+        enabled = false;
     }
 }

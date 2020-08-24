@@ -32,7 +32,7 @@ public static class SaveMenager
         else
         {
             Debug.Log("Brak Pliku do odczytu");
-            PlayerData firstLoad = new PlayerData(1, 1000, 1, 1, 1, 1);
+            PlayerData firstLoad = new PlayerData(1, 1000, 1, 1, 1);
             Save(firstLoad);
             return firstLoad;
         }

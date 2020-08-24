@@ -8,6 +8,7 @@ public class NPCDispository : MonoBehaviour
     private void Awake()
     {
         Dispository = this;
+        GeneralGameMenager.instance.QuitingRage.AddListener(ResetAll);
     }
 
     private void Start()
@@ -20,7 +21,8 @@ public class NPCDispository : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<NPC_ControlScript>().SetIndex(i);
-            if (i >= current) { transform.GetChild(i).gameObject.SetActive(false); }
+            if (i >= current) 
+            { transform.GetChild(i).gameObject.SetActive(false); }
             else { transform.GetChild(i).GetComponent<NPC_ControlScript>().Prepare(); }
         }
     }
@@ -32,21 +34,18 @@ public class NPCDispository : MonoBehaviour
         {
             current++;
             transform.GetChild(current-1).gameObject.SetActive(true);
-            if (ScoreCounter.counter.Rage()) { transform.GetChild(current - 1).gameObject.GetComponent<NPC_ControlScript>().PrepareRageMode(); }
+            transform.GetChild(current - 1).GetComponent<NPC_ControlScript>().Prepare();
         }
     }
 
     public bool CanIRespawn(int index)
     {
-        if (index < current) { return true; } else return false;
+        if (index < current) { return true; } 
+        else return false;
     }
 
-    public void ResetAll()
+    void ResetAll()
     {
-        for(int i=0; i<current; i++)
-        {
-            transform.GetChild(i).GetComponent<NPC_ControlScript>().StopRageMode();
-        }
         current = 6;
     }
 }

@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
-
 public class CallPhone : Item
 {
+    private void Start()
+    {
+        GeneralGameMenager.instance.SwitchToNormal.AddListener(SetChance);
+        GeneralGameMenager.instance.QuitingNormal.AddListener(ResetChance);
+        GeneralGameMenager.instance.QuitingNormal.AddListener(Hide);
+    }
     public override void ItemAction()
     {
-        model.SetActive(true);
-        GetComponentInParent<NPC_ControlScript>().priorityToDestroy = true;
-        GetComponentInParent<NPC_ControlScript>().score += 1;
+        if (GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Normal)
+        {
+            model.SetActive(true);
+            transform.parent.gameObject.GetComponent<NPC_ControlScript>().score += 1;
+        }
+    }
+
+    void Hide()
+    {
+        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score -= 1;
+        model.SetActive(false);
     }
 }
