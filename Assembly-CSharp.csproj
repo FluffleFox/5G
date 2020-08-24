@@ -90,7 +90,6 @@
     <Compile Include="Assets\Scripts\SwitchGameState.cs" />
     <Compile Include="Assets\Scripts\TowerAnimation.cs" />
     <Compile Include="Assets\Scripts\UpgradeMenagment.cs" />
-    <None Include="Assets\Materials\Shaders\CutAlpha.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
