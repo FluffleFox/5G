@@ -8,7 +8,7 @@ public class BasicHit : Hit
     public float growSpeed;
     public override void GetHit()
     {
-        if (DeadRay.tower != null)
+        if (DeadRay.tower != null && gameObject.activeSelf)
         {
             StartCoroutine(DIE());
         }

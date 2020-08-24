@@ -14,11 +14,6 @@ public class Item : MonoBehaviour
         ResetChance();
     }
 
-    private void OnEnable()
-    {
-        model.SetActive(true);
-    }
-
     protected void SetChance()
     {
         chance = chanceOverLevels.Evaluate((float)GeneralGameMenager.instance.data.level);
@@ -35,6 +30,11 @@ public class Item : MonoBehaviour
     }
 
     public virtual void ItemAction()
+    {
+
+    }
+
+    public virtual void ItemHitAction()
     {
 
     }

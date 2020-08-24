@@ -44,6 +44,20 @@ public class ScoreCounter : MonoBehaviour
         }
     }
 
+    public void AddHP()
+    {
+        if (hp < 3)
+        {
+            hp++;
+            hpDisplay[hp].enabled = true;
+        }
+    }
+
+    public int GetCurrentHP()
+    {
+        return hp;
+    }
+
     private void ResetScore()
     {
         currentScore = 0;

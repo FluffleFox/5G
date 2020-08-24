@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RageModeItems : Item
 {
@@ -17,9 +15,10 @@ public class RageModeItems : Item
     public override void ItemAction()
     {
         this.enabled = true;
+        model.SetActive(true);
+        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score += 1;
         itemIndex = Random.Range(0, model.transform.childCount);
         model.transform.GetChild(itemIndex).gameObject.SetActive(true);
-        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score += 1;
     }
 
     public override void LastFrameAction()

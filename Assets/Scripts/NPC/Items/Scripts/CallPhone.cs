@@ -18,7 +18,10 @@ public class CallPhone : Item
 
     void Hide()
     {
-        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score -= 1;
-        model.SetActive(false);
+        if (model.activeSelf)
+        {
+            transform.parent.gameObject.GetComponent<NPC_ControlScript>().score -= 1;
+            model.SetActive(false);
+        }
     }
 }

@@ -44,7 +44,7 @@ public class NPC_ControlScript : MonoBehaviour
             if (rage && Vector3.Distance(transform.position, DeadRay.tower.transform.position) < 0.75f)
             {
                 DeadRay.tower.Burn();
-                GeneralGameMenager.instance.ChangeGameState(GeneralGameMenager.gameState.Shop);
+                GeneralGameMenager.instance.ChangeGameState(GeneralGameMenager.gameState.Summary);
             }
         }
     }
@@ -116,6 +116,10 @@ public class NPC_ControlScript : MonoBehaviour
         else
         {
             ScoreCounter.counter.AddScore(score);
+        }
+        foreach(Item k in GetComponentsInChildren<Item>())
+        {
+            k.ItemHitAction();
         }
     }
 }

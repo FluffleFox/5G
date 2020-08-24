@@ -65,17 +65,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CloundMovment.cs" />
     <Compile Include="Assets\Scripts\DeadRay.cs" />
-    <Compile Include="Assets\Scripts\DisableOnQuitingGameState.cs" />
-    <Compile Include="Assets\Scripts\DisableOnSwitchingGameState.cs" />
-    <Compile Include="Assets\Scripts\EnableOnQuitingGameState.cs" />
-    <Compile Include="Assets\Scripts\EnableOnSwithingState.cs" />
     <Compile Include="Assets\Scripts\GeneralGameMenager.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\BasicHit.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\Hit.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Item.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\Beer.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CallPhone.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CameraFace.cs" />
-    <Compile Include="Assets\Scripts\NPC\Items\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\LiveBonus.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\RageModeItems.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicEndGameMovement.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicMovment.cs" />
@@ -87,6 +84,10 @@
     <Compile Include="Assets\Scripts\SaveMenager.cs" />
     <Compile Include="Assets\Scripts\ScoreCounter.cs" />
     <Compile Include="Assets\Scripts\ShootMechanic.cs" />
+    <Compile Include="Assets\Scripts\StateMachineMenagement\DisableOnQuitingGameState.cs" />
+    <Compile Include="Assets\Scripts\StateMachineMenagement\DisableOnSwitchingGameState.cs" />
+    <Compile Include="Assets\Scripts\StateMachineMenagement\EnableOnQuitingGameState.cs" />
+    <Compile Include="Assets\Scripts\StateMachineMenagement\EnableOnSwithingState.cs" />
     <Compile Include="Assets\Scripts\SwitchGameState.cs" />
     <Compile Include="Assets\Scripts\TowerAnimation.cs" />
     <Compile Include="Assets\Scripts\UpgradeMenagment.cs" />

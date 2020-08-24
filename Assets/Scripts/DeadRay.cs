@@ -29,7 +29,7 @@ public class DeadRay : MonoBehaviour
         towerAnimation = GetComponent<TowerAnimation>();
         towerAnimation.midDropAngle = new Vector3(Random.Range(90.0f, 100.0f), Random.Range(0.0f, 360.0f), 0.0f);
         towerAnimation.topDropAngle = towerAnimation.midDropAngle+ new Vector3(Random.Range(-40.0f, 10.0f), Random.Range(-45.0f, 45.0f), Random.Range(-180.0f,180.0f));
-        GeneralGameMenager.instance.SwitchToNormal.AddListener(Respawn);
+        GeneralGameMenager.instance.QuitingSummary.AddListener(Respawn);
     }
 
     private void Update()

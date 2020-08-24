@@ -10,6 +10,8 @@ public class EnableOnQuitingGameState : MonoBehaviour
             case GeneralGameMenager.gameState.Normal: { GeneralGameMenager.instance.QuitingNormal.AddListener(EnableObject); break; }
             case GeneralGameMenager.gameState.Rage: { GeneralGameMenager.instance.QuitingRage.AddListener(EnableObject); break; }
             case GeneralGameMenager.gameState.Shop: { GeneralGameMenager.instance.QuitingShop.AddListener(EnableObject); break; }
+            case GeneralGameMenager.gameState.Summary: { GeneralGameMenager.instance.QuitingSummary.AddListener(EnableObject); break; }
+            default: { Debug.LogError("Undefine state: " + quitingGameState); break; }
         }
     }
     void EnableObject()

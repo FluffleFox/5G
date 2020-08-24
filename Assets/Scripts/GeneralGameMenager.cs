@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class GeneralGameMenager : MonoBehaviour
-{
+{   
+    public enum gameState { Normal, Rage, Shop, Summary};
+    public gameState currentGameState = gameState.Shop;
+
     public static GeneralGameMenager instance;
     public PlayerData data;
 
@@ -14,9 +17,10 @@ public class GeneralGameMenager : MonoBehaviour
     public UnityEvent QuitingRage;
     public UnityEvent SwitchToShop;
     public UnityEvent QuitingShop;
+    public UnityEvent SwitchToSummary;
+    public UnityEvent QuitingSummary;
 
-    public enum gameState { Normal, Rage, Shop};
-    public gameState currentGameState = gameState.Shop;
+
 
     void Awake()
     {
@@ -33,6 +37,7 @@ public class GeneralGameMenager : MonoBehaviour
             case gameState.Normal: { QuitingNormal.Invoke(); break; }
             case gameState.Rage: { QuitingRage.Invoke(); break; }
             case gameState.Shop: { QuitingShop.Invoke(); break; }
+            case gameState.Summary: { QuitingSummary.Invoke(); break; }
         }
         currentGameState = _newState;
         switch (currentGameState)
@@ -40,6 +45,7 @@ public class GeneralGameMenager : MonoBehaviour
             case gameState.Normal: { SwitchToNormal.Invoke(); break; }
             case gameState.Rage: { SwitchToRage.Invoke(); break; }
             case gameState.Shop: { SwitchToShop.Invoke(); break; }
+            case gameState.Summary: { SwitchToSummary.Invoke(); break; }
         }
     }
 }
