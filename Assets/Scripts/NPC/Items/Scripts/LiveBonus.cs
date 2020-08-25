@@ -11,7 +11,7 @@
         if (ScoreCounter.counter.GetCurrentHP()<3)
         {
             model.SetActive(true);
-            transform.parent.gameObject.GetComponent<NPC_ControlScript>().score += 1;
+            transform.parent.gameObject.GetComponent<NPC_ControlScript>().AddScore(1);
         }
         else
         {
@@ -37,6 +37,6 @@
 
     void RemoveItemEffect()
     {
-        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score = 0;
+        transform.parent.gameObject.GetComponent<NPC_ControlScript>().SetScore(0);
     }
 }

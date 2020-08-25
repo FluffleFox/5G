@@ -31,6 +31,11 @@ public class ScoreCounter : MonoBehaviour
         }
     }
 
+    public int GetScore()
+    {
+        return currentScore;
+    }
+
     public void LostHP()
     {
         if (hp > 0)

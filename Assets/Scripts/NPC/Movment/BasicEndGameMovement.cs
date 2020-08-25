@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasicEndGameMovement : Movment
 {
@@ -9,6 +7,7 @@ public class BasicEndGameMovement : Movment
     private void Start()
     {
         baseSpeed = Random.Range(0.8f, 1.2f);
+        movmentSpeed = control.movementSpeed;
         destination = DeadRay.tower.transform.position;
         destination.y = 0.0f;
         transform.rotation = Quaternion.LookRotation(transform.position - destination);

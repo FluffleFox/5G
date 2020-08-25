@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-public class CallPhone : Item
+﻿public class CallPhone : Item
 {
     private void Start()
     {
@@ -12,7 +11,7 @@ public class CallPhone : Item
         if (GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Normal)
         {
             model.SetActive(true);
-            transform.parent.gameObject.GetComponent<NPC_ControlScript>().score += 1;
+            transform.parent.gameObject.GetComponent<NPC_ControlScript>().AddScore(1);
         }
     }
 
@@ -20,7 +19,7 @@ public class CallPhone : Item
     {
         if (model.activeSelf)
         {
-            transform.parent.gameObject.GetComponent<NPC_ControlScript>().score -= 1;
+            transform.parent.gameObject.GetComponent<NPC_ControlScript>().AddScore(-1);
             model.SetActive(false);
         }
     }

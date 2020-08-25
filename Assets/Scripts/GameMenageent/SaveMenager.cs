@@ -6,7 +6,6 @@ public static class SaveMenager
 {
     public static void Save(PlayerData data)
     {
-        Debug.Log("Save");
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Data.dat";
         FileStream file;
@@ -22,7 +21,6 @@ public static class SaveMenager
         string path = Application.persistentDataPath + "/Data.dat";
         if (File.Exists(path))
         {
-            Debug.Log("Pobieram");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.OpenRead(path);
             PlayerData data = bf.Deserialize(file) as PlayerData;
@@ -31,8 +29,7 @@ public static class SaveMenager
         }
         else
         {
-            Debug.Log("Brak Pliku do odczytu");
-            PlayerData firstLoad = new PlayerData(1, 1000, 1, 1, 1);
+            PlayerData firstLoad = new PlayerData(1, 0, 1000, 1, 1, 1);
             Save(firstLoad);
             return firstLoad;
         }

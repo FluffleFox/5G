@@ -39,9 +39,9 @@ public class ShootMechanic : MonoBehaviour
                             first = info.collider.gameObject;
                         }
 
-                        if (info.collider.GetComponent<NPC_ControlScript>().score > maxScore)
+                        if (info.collider.GetComponent<NPC_ControlScript>().GetScoreValue() > maxScore)
                         {
-                            maxScore = info.collider.GetComponent<NPC_ControlScript>().score;
+                            maxScore = info.collider.GetComponent<NPC_ControlScript>().GetScoreValue();
                             toDestroy = info.collider.gameObject;
                         }
                         ray.origin = info.point + ray.direction.normalized * 0.05f;

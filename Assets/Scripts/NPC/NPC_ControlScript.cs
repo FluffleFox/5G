@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class NPC_ControlScript : MonoBehaviour
 {
     public LayerMask mask;
     [HideInInspector]
-    public bool rage;
-    [HideInInspector]
     public float movementSpeed;
 
-    [SerializeField] Movment movmentScript=null;
-    [SerializeField] Hit hitScript=null;
-
     int index;
-    public int score = 0;
+    int score = 0;
 
     private void Start()
     {
@@ -35,13 +26,11 @@ public class NPC_ControlScript : MonoBehaviour
         {
             k.transform.Translate((k.transform.position - transform.position).normalized * Time.deltaTime, Space.World);
         }
-        movmentScript.movmentSpeed = movementSpeed;
-
 
         //Zniszczenie wieży
         if (DeadRay.tower != null)
         {
-            if (rage && Vector3.Distance(transform.position, DeadRay.tower.transform.position) < 0.75f)
+            if (Vector3.Distance(transform.position, DeadRay.tower.transform.position) < 0.75f && GeneralGameMenager.instance.currentGameState==GeneralGameMenager.gameState.Rage)
             {
                 DeadRay.tower.Burn();
                 GeneralGameMenager.instance.ChangeGameState(GeneralGameMenager.gameState.Summary);
@@ -53,11 +42,12 @@ public class NPC_ControlScript : MonoBehaviour
     {
         if (NPCDispository.Dispository.CanIRespawn(index))
         {
-            score = 0;
+            SetScore(0);
+            GetComponent<ArmoredHit>().SetHP(1);
             foreach (Item k in GetComponentsInChildren<Item>())
             {
                 k.LastFrameAction();
-                if (UnityEngine.Random.Range(0, 100) < k.chance)
+                if (Random.Range(0, 100) < k.chance)
                 {
                     k.enabled = true;
                     k.ItemAction();
@@ -68,43 +58,57 @@ public class NPC_ControlScript : MonoBehaviour
                 }
             }
             transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1.0f);
-            movmentScript.MovmentPrepare();
+            GetComponent<Movment>().MovmentPrepare();
         }
         else 
         {
-            transform.position = new Vector3(4.75f, 0, UnityEngine.Random.Range(5.5f, 10.5f));
+            transform.position = new Vector3(4.75f, 0, Random.Range(5.5f, 10.5f));
             gameObject.SetActive(false); 
         }
     }
 
     public void PrepareRageMode()
     {
-        if (!rage)
-        {
-            rage = true;
-            Destroy(movmentScript);
-            gameObject.AddComponent<BasicEndGameMovement>();
-            movmentScript = GetComponent<BasicEndGameMovement>();
-            hitScript.SetRage(true);
-            transform.rotation = Quaternion.LookRotation(transform.position - DeadRay.tower.transform.position);
-        }
+        Destroy(GetComponent<BasicMovment>());
+        gameObject.AddComponent<BasicEndGameMovement>();
+        transform.rotation = Quaternion.LookRotation(transform.position - DeadRay.tower.transform.position);
     }
 
     public void StopRageMode()
     {
-        if (rage)
-        {
-            rage = false;
-            Destroy(movmentScript);
-            gameObject.AddComponent<BasicMovment>();
-            movmentScript = GetComponent<BasicMovment>();
-            hitScript.SetRage(false);
-        }
+        Destroy(GetComponent<BasicEndGameMovement>());
+        gameObject.AddComponent<BasicMovment>();
     }
 
     public void SetIndex(int value)
     {
         index = value;
+    }
+
+    public void AddScore(int valueToAdd)
+    {
+        score += valueToAdd;
+        if (score > 0)
+        {
+            GetComponent<AccurateLevel>().SetBigger();
+        }
+        else
+        {
+            GetComponent<AccurateLevel>().SetDefault();
+        }
+    }
+
+    public void SetScore(int value)
+    {
+        score = value;
+        if (score > 0)
+        {
+            GetComponent<AccurateLevel>().SetBigger();
+        }
+        else
+        {
+            GetComponent<AccurateLevel>().SetDefault();
+        }
     }
 
     public void GetScore()
@@ -121,5 +125,10 @@ public class NPC_ControlScript : MonoBehaviour
         {
             k.ItemHitAction();
         }
+    }
+
+    public int GetScoreValue()
+    {
+        return score;
     }
 }

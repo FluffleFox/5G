@@ -16,7 +16,7 @@ public class RageModeItems : Item
     {
         this.enabled = true;
         model.SetActive(true);
-        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score += 1;
+        transform.parent.gameObject.GetComponent<NPC_ControlScript>().AddScore(1);
         itemIndex = Random.Range(0, model.transform.childCount);
         model.transform.GetChild(itemIndex).gameObject.SetActive(true);
     }
@@ -28,6 +28,6 @@ public class RageModeItems : Item
 
     void RemoveItemEffect()
     {
-        transform.parent.gameObject.GetComponent<NPC_ControlScript>().score = 0;
+        transform.parent.gameObject.GetComponent<NPC_ControlScript>().SetScore(0);
     }
 }

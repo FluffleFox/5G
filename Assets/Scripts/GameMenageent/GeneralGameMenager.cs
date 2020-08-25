@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class GeneralGameMenager : MonoBehaviour
@@ -28,6 +26,7 @@ public class GeneralGameMenager : MonoBehaviour
         else { instance = this; }
         data = SaveMenager.Load();
         SwitchToShop.Invoke();
+        SwitchToNormal.AddListener(LoadData);
     }
 
     public void ChangeGameState(gameState _newState)
@@ -47,5 +46,10 @@ public class GeneralGameMenager : MonoBehaviour
             case gameState.Shop: { SwitchToShop.Invoke(); break; }
             case gameState.Summary: { SwitchToSummary.Invoke(); break; }
         }
+    }
+
+    void LoadData()
+    {
+        data = SaveMenager.Load();
     }
 }

@@ -36,7 +36,7 @@ public class Movment : MonoBehaviour
         }
         if (other.tag== "HPCheeck")
         {
-            if (control.score>0)
+            if (control.GetScoreValue()>0)
             {
                 ScoreCounter.counter.LostHP();
             }

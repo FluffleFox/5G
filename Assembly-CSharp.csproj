@@ -63,12 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CloundMovment.cs" />
-    <Compile Include="Assets\Scripts\DeadRay.cs" />
-    <Compile Include="Assets\Scripts\GeneralGameMenager.cs" />
+    <Compile Include="Assets\Scripts\GameMenageent\GeneralGameMenager.cs" />
+    <Compile Include="Assets\Scripts\GameMenageent\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\GameMenageent\SaveMenager.cs" />
+    <Compile Include="Assets\Scripts\GameMenageent\ScoreCounter.cs" />
+    <Compile Include="Assets\Scripts\GameMenageent\Summary.cs" />
+    <Compile Include="Assets\Scripts\GameMenageent\UpgradeMenagment.cs" />
+    <Compile Include="Assets\Scripts\NPC\Hit\ArmoredHit.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\BasicHit.cs" />
     <Compile Include="Assets\Scripts\NPC\Hit\Hit.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\Armor.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\Beer.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CallPhone.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CameraFace.cs" />
@@ -77,20 +82,18 @@
     <Compile Include="Assets\Scripts\NPC\Movment\BasicEndGameMovement.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicMovment.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\Movment.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPCDispository.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC_ControlScript.cs" />
-    <Compile Include="Assets\Scripts\NPCDispository.cs" />
-    <Compile Include="Assets\Scripts\PlayerData.cs" />
-    <Compile Include="Assets\Scripts\PlayerData\Player.cs" />
-    <Compile Include="Assets\Scripts\SaveMenager.cs" />
-    <Compile Include="Assets\Scripts\ScoreCounter.cs" />
-    <Compile Include="Assets\Scripts\ShootMechanic.cs" />
+    <Compile Include="Assets\Scripts\NPC\PlayerUpgradesInfluence\AccurateLevel.cs" />
+    <Compile Include="Assets\Scripts\Others\CloundMovment.cs" />
     <Compile Include="Assets\Scripts\StateMachineMenagement\DisableOnQuitingGameState.cs" />
     <Compile Include="Assets\Scripts\StateMachineMenagement\DisableOnSwitchingGameState.cs" />
     <Compile Include="Assets\Scripts\StateMachineMenagement\EnableOnQuitingGameState.cs" />
     <Compile Include="Assets\Scripts\StateMachineMenagement\EnableOnSwithingState.cs" />
-    <Compile Include="Assets\Scripts\SwitchGameState.cs" />
-    <Compile Include="Assets\Scripts\TowerAnimation.cs" />
-    <Compile Include="Assets\Scripts\UpgradeMenagment.cs" />
+    <Compile Include="Assets\Scripts\StateMachineMenagement\SwitchGameState.cs" />
+    <Compile Include="Assets\Scripts\TowerScripts\DeadRay.cs" />
+    <Compile Include="Assets\Scripts\TowerScripts\ShootMechanic.cs" />
+    <Compile Include="Assets\Scripts\TowerScripts\TowerAnimation.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
