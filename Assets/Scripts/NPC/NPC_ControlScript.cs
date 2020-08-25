@@ -46,15 +46,13 @@ public class NPC_ControlScript : MonoBehaviour
             GetComponent<ArmoredHit>().SetHP(1);
             foreach (Item k in GetComponentsInChildren<Item>())
             {
-                k.LastFrameAction();
                 if (Random.Range(0, 100) < k.chance)
                 {
-                    k.enabled = true;
                     k.ItemAction();
                 }
                 else
                 {
-                    k.enabled = false;
+                    k.LastFrameAction();
                 }
             }
             transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.color = new Color(UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1.0f);

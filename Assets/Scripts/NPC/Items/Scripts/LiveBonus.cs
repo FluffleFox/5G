@@ -16,12 +16,11 @@
         else
         {
             model.SetActive(false);
-            this.enabled = false;
         }
     }
     public override void ItemHitAction()
     {
-        if (this.enabled && GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Normal)
+        if (model.activeSelf && GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Normal)
         { 
             if (ScoreCounter.counter.GetCurrentHP() < 3) 
             { 
@@ -29,7 +28,7 @@
             }
             else
             {
-                ScoreCounter.counter.AddScore(49);
+                ScoreCounter.counter.AddScore(4);
             }
         }
     }

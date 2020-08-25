@@ -13,8 +13,15 @@ public class AccurateLevel : MonoBehaviour
         SetDefault();
     }
 
+    void SetHitBox()
+    {
+        myHitBox = GetComponent<BoxCollider>();
+        hitBoxSize = myHitBox.bounds.size;
+    }
+
     public void SetDefault()
     {
+        if(myHitBox==null) { SetHitBox(); }
         myHitBox.size=hitBoxSize*(0.5f+(0.5f/GeneralGameMenager.instance.data.accurateLevel));
     }
 

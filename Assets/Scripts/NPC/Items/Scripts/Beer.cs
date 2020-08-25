@@ -16,12 +16,14 @@ public class Beer : Item
 
     private void Update()
     {
-        transform.parent.Translate(transform.parent.right * Mathf.Sin(Time.realtimeSinceStartup) * Time.deltaTime * 0.5f, Space.World);
+        if (model.activeSelf)
+        { 
+            transform.parent.Translate(transform.parent.right * Mathf.Sin(Time.realtimeSinceStartup) * Time.deltaTime * 0.5f, Space.World); 
+        }
     }
 
     void Hide()
     {
         model.SetActive(false);
-        enabled = false;
     }
 }

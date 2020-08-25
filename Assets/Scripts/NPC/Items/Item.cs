@@ -24,14 +24,9 @@ public class Item : MonoBehaviour
         chance = 0;
     }
 
-    private void OnDisable()
-    {
-        model.SetActive(false);
-    }
-
     public virtual void ItemAction()
     {
-
+        model.SetActive(true);
     }
 
     public virtual void ItemHitAction()
@@ -41,6 +36,11 @@ public class Item : MonoBehaviour
 
     public virtual void LastFrameAction()
     {
+        model.SetActive(false);
+    }
 
+    private void OnDisable()
+    {
+        Debug.Log("Oj kurwa byczq");
     }
 }

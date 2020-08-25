@@ -10,7 +10,7 @@
     {
         if (GeneralGameMenager.instance.currentGameState == GeneralGameMenager.gameState.Normal)
         {
-            model.SetActive(true);
+            base.ItemAction();
             transform.parent.gameObject.GetComponent<NPC_ControlScript>().AddScore(1);
         }
     }

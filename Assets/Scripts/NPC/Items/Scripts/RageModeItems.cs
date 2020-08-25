@@ -23,7 +23,11 @@ public class RageModeItems : Item
 
     public override void LastFrameAction()
     {
-        model.transform.GetChild(itemIndex).gameObject.SetActive(false);
+        //model.transform.GetChild(itemIndex).gameObject.SetActive(false);
+        foreach(Transform k in model.transform)
+        {
+            k.gameObject.SetActive(false);
+        }
     }
 
     void RemoveItemEffect()
