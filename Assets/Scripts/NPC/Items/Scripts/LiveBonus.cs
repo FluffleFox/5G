@@ -33,6 +33,15 @@
         }
     }
 
+    public override void LastFrameAction()
+    {
+        if (model.activeSelf)
+        {
+            base.LastFrameAction();
+            ScoreCounter.counter.AddHP();
+        }
+    }
+
 
     void RemoveItemEffect()
     {

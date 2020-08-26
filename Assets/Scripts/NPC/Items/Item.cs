@@ -38,9 +38,4 @@ public class Item : MonoBehaviour
     {
         model.SetActive(false);
     }
-
-    private void OnDisable()
-    {
-        Debug.Log("Oj kurwa byczq");
-    }
 }
