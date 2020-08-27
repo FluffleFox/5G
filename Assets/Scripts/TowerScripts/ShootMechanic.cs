@@ -53,17 +53,18 @@ public class ShootMechanic : MonoBehaviour
 
             if (toDestroy != null)
             {
-                DeadRay.tower.Shoot(toDestroy.transform.position);
+                DeadRay.tower.Shoot(toDestroy.transform.position+Vector3.forward* 1.3f);
                 toDestroy.GetComponent<Hit>().GetHit();
             }
             else if (first != null)
             {
-                DeadRay.tower.Shoot(first.transform.position);
+                DeadRay.tower.Shoot(first.transform.position+Vector3.forward * 1.3f);
                 first.GetComponent<Hit>().GetHit();
             }
             else
             {
                 DeadRay.tower.Shoot(hitPoint);
+                Debug.Log(hitPoint);
             }
         }
     }
@@ -80,12 +81,12 @@ public class ShootMechanic : MonoBehaviour
                 Collider[] inRange = Physics.OverlapSphere(info.point, 1.5f, mask);
                 if (inRange.Length == 0)
                 {
-                    DeadRay.tower.Shoot(info.point);
+                    DeadRay.tower.Shoot(info.point+Vector3.forward * 1.3f);
                     return;
                 }
                 if (inRange.Length == 1)
                 {
-                    DeadRay.tower.Shoot(inRange[0].gameObject.transform.position);
+                    DeadRay.tower.Shoot(inRange[0].gameObject.transform.position+Vector3.forward * 1.3f);
                     inRange[0].gameObject.GetComponent<Hit>().GetHit();
                     return;
                 }
@@ -100,7 +101,7 @@ public class ShootMechanic : MonoBehaviour
                         toDestroy = inRange[i].gameObject;
                     }
                 }
-                DeadRay.tower.Shoot(toDestroy.transform.position);
+                DeadRay.tower.Shoot(toDestroy.transform.position+Vector3.forward * 1.3f);
                 toDestroy.GetComponent<Hit>().GetHit();
             }
         }
