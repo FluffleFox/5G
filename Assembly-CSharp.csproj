@@ -78,6 +78,8 @@
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CallPhone.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\CameraFace.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\Explosion.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\FrozenEffect.cs" />
+    <Compile Include="Assets\Scripts\NPC\Items\Scripts\FrozenExplosion.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\LiveBonus.cs" />
     <Compile Include="Assets\Scripts\NPC\Items\Scripts\RageModeItems.cs" />
     <Compile Include="Assets\Scripts\NPC\Movment\BasicEndGameMovement.cs" />
